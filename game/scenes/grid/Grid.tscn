@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/tilesets/game/game_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/grid/Grid.gd" type="Script" id=2]
+[ext_resource path="res://scenes/grid/cells/garbage_bag/GarbageBagCell.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/grid/cells/container/ContainerCell.tscn" type="PackedScene" id=4]
+
+[node name="Grid" type="Spatial"]
+script = ExtResource( 2 )
+cell_scenes = [ ExtResource( 3 ), ExtResource( 4 ) ]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 196614, 1, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262149, 1, 0, 262150, 1, 0, 327683, 0, 0, 327684, 0, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 393221, 0, 0, 393222, 0, 0, 393224, 1, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0 )
+
+[node name="Cells" type="Spatial" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="UpdateTimer" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timers/UpdateTimer" to="." method="_on_UpdateTimer_timeout"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/camera/gimbal/CameraGimbal.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=51]
+radius = 0.25
+
+[node name="CameraGimbal" type="Node"]
+script = ExtResource( 1 )
+
+[node name="CameraRoll" type="Spatial" parent="."]
+
+[node name="CameraPivot" type="Spatial" parent="CameraRoll"]
+
+[node name="CameraBoom" type="Spatial" parent="CameraRoll/CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 0.877975, 0.478707, 0, -0.478707, 0.877975, 0, 0, 0 )
+
+[node name="SpringArm" type="SpringArm" parent="CameraRoll/CameraPivot/CameraBoom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.544116, 0 )
+shape = SubResource( 51 )
+spring_length = 2.5
+
+[node name="Camera" type="Camera" parent="CameraRoll/CameraPivot/CameraBoom/SpringArm"]

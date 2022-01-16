@@ -171,10 +171,4 @@ func apply_friction(delta: float) -> void:
 
 func apply_rotation_redirection(delta: float) -> void:
 	var forward: = -global_transform.basis.z
-	
-	$Forward.global_transform = $Forward.global_transform.looking_at(
-		$Forward.global_transform.origin + velocity,
-		up_direction
-	)
-	
 	velocity = forward.normalized() * velocity.length()

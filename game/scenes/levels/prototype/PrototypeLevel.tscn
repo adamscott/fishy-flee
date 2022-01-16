@@ -7,11 +7,42 @@
 [node name="PrototypeLevel" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="CSGBox" type="CSGBox" parent="."]
+[node name="Collisions" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Collisions"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0933685, 0 )
+use_collision = true
 width = 6.38909
 height = 0.0224724
-depth = 6.17471
+depth = 34.531
+
+[node name="CSGBox2" type="CSGBox" parent="Collisions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0933685, -37.0145 )
+use_collision = true
+width = 6.24652
+height = 0.0224724
+depth = 39.5121
+
+[node name="CSGBox3" type="CSGBox" parent="Collisions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681955, 0.769357, -37.0145 )
+use_collision = true
+width = 4.50287
+height = 1.50362
+depth = 1.76717
+
+[node name="CSGBox4" type="CSGBox" parent="Collisions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.919622, 0.769357, -43.5503 )
+use_collision = true
+width = 4.50287
+height = 1.50362
+depth = 1.76717
+
+[node name="CSGBox5" type="CSGBox" parent="Collisions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.440407, 3.20618, -49.3164 )
+use_collision = true
+width = 4.50287
+height = 1.50362
+depth = 1.76717
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45392, 0 )

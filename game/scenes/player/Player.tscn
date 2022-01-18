@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=5]
 [ext_resource path="res://assets/models/fish/salmon/Salmon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/shaders/psx/psx_unlit_transparent.shader" type="Shader" id=7]
+[ext_resource path="res://assets/sprites/shadow/shadow.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.0619141
@@ -950,9 +952,33 @@ transitions = {
 }
 }
 
+[sub_resource type="ShaderMaterial" id=20]
+shader = ExtResource( 7 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 1, 1, 1, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.5, 0.7, 1, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = true
+shader_param/draw_distance = 40.0
+shader_param/albedoTex = ExtResource( 8 )
+
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
 script = ExtResource( 1 )
+
+[node name="RemoteTransform" type="RemoteTransform" parent="."]
+remote_path = NodePath("../RayCastsContainer/RayCasts")
+update_rotation = false
+update_scale = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
@@ -984,14 +1010,25 @@ anims/turn_right = SubResource( 12 )
 
 [node name="AnimationTree" parent="Skin/Salmon" index="2"]
 parameters/turn_add/add_amount = 1.0
-parameters/turn_direction/blend_position = 0.0
-parameters/velocity/blend_position = 0.0
 
 [node name="StateMachines" type="Node" parent="."]
 
 [node name="MoveStateMachine" type="Node" parent="StateMachines"]
 script = ExtResource( 2 )
 state_machine = SubResource( 19 )
+
+[node name="RayCastsContainer" type="Node" parent="."]
+
+[node name="RayCasts" type="Spatial" parent="RayCastsContainer"]
+
+[node name="ShadowRayCast" type="RayCast" parent="RayCastsContainer/RayCasts"]
+enabled = true
+cast_to = Vector3( 0, -1000, 0 )
+
+[node name="Shadow" type="Sprite3D" parent="RayCastsContainer/RayCasts/ShadowRayCast"]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0 )
+material_override = SubResource( 20 )
+texture = ExtResource( 8 )
 
 [connection signal="transited" from="StateMachines/MoveStateMachine" to="." method="_on_MoveStateMachine_transited"]
 

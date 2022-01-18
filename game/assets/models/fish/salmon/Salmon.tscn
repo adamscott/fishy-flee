@@ -6,11 +6,21 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
 shader_param/precision_multiplier = 1.0
 shader_param/modulate_color = Color( 1, 1, 1, 1 )
 shader_param/uv_scale = Vector2( 1, 1 )
 shader_param/uv_offset = Vector2( 0, 0 )
 shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.5, 0.7, 1, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = true
+shader_param/draw_distance = 40.0
 shader_param/albedoTex = ExtResource( 2 )
 
 [sub_resource type="AnimationNodeAdd2" id=2]

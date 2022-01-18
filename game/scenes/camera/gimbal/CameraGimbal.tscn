@@ -16,8 +16,8 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.877975, 0.478707, 0, -0.478707, 0.877975, 0, 0, 0 )
 
 [node name="SpringArm" type="SpringArm" parent="CameraRoll/CameraPivot/CameraBoom"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.544116, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.337, 0.5 )
 shape = SubResource( 51 )
-spring_length = 1.5
+spring_length = 0.5
 
 [node name="Camera" type="Camera" parent="CameraRoll/CameraPivot/CameraBoom/SpringArm"]

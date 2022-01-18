@@ -39,7 +39,8 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	process_roll(delta)
 	process_translation(delta)
-	process_rotation(delta)
+	process_input(delta)
+	process_auto_rotation(delta)
 	
 	mouse_input = Vector2.ZERO
 
@@ -72,7 +73,7 @@ func process_translation(delta: float) -> void:
 	)
 
 
-func process_rotation(delta: float) -> void:
+func process_input(delta: float) -> void:
 	var mouse_invert: Vector2 = ProjectSettings.get_setting("game/input/camera/mouse/invert")
 	var mouse_acc: Vector2 = ProjectSettings.get_setting("game/input/camera/mouse/acceleration")
 	var mouse_sensitivity: float = ProjectSettings.get_setting("game/input/camera/mouse/sensitivity")
@@ -95,6 +96,16 @@ func process_rotation(delta: float) -> void:
 	camera_boom.rotate_object_local(Vector3.RIGHT, input.y * delta)
 	
 	camera_boom.rotation.x = clamp(camera_boom.rotation.x, MIN_ROTATION_BOOM, MAX_ROTATION_BOOM)
+
+
+func process_auto_rotation(delta: float) -> void:
+	var camera_origin: = camera_pivot.global_transform.origin
+	var target_origin: = target.global_transform.origin
+	
+	var angle: = camera_origin.signed_angle_to(target_origin, Vector3.UP)
+	prints(angle)
+	
+	camera_pivot.rotate_object_local(Vector3.UP, angle * 2.0 * delta)
 
 
 func set_capturing_mouse(val: bool) -> void:

@@ -48,6 +48,16 @@ _global_script_classes=[ {
 "class": "DialogicUtil",
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
+}, {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
 } ]
 _global_script_class_icons={
 "DTS": "",
@@ -57,7 +67,9 @@ _global_script_class_icons={
 "DialogicDefinitionsUtil": "",
 "DialogicParser": "",
 "DialogicResources": "",
-"DialogicUtil": ""
+"DialogicUtil": "",
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": ""
 }
 
 [application]
@@ -68,7 +80,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/scatter/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [game]
 

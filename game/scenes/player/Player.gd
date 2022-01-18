@@ -4,14 +4,14 @@ const YAFSM: = preload("res://addons/imjp94.yafsm/YAFSM.gd")
 const StateMachinePlayer: = YAFSM.StateMachinePlayer
 
 export (Vector3) var up_direction: = Vector3.UP
-export (float) var speed: = 20.0
+export (float) var speed: = 19.0
 export (float) var min_velocity_horizontal: = 0.3
 export (float) var min_velocity_vertical: = 0.1
-export (float) var max_velocity_horizontal: = 5.0
+export (float) var max_velocity_horizontal: = 2.5
 export (float) var max_velocity_vertical: = 1.0
-export (float) var friction_horizontal: = 0.5
+export (float) var friction_horizontal: = 0.8
 export (float) var friction_vertical: = 1.0
-export (float) var rotation_speed_factor: = PI
+export (float) var rotation_speed_factor: = PI * 2.0
 
 onready var skin: Spatial = $Skin
 
@@ -39,6 +39,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	process_input(delta)
 	process_animation(delta)
+	process_shadow(delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -77,6 +78,21 @@ func process_input(delta: float) -> void:
 func process_animation(delta: float) -> void:
 	var ratio_horizontal: = velocity.length() / max_velocity_horizontal
 	$Skin/Salmon/AnimationTree["parameters/velocity/blend_position"] = ratio_horizontal
+
+
+func process_shadow(delta: float) -> void:
+	var shadow_raycast: RayCast = $RayCastsContainer/RayCasts/ShadowRayCast
+	var shadow_sprite3D: Sprite3D = $RayCastsContainer/RayCasts/ShadowRayCast/Shadow
+	
+	if not shadow_raycast.is_colliding():
+		shadow_sprite3D.visible = false
+		return
+	
+	var collision_point: = shadow_raycast.get_collision_point()
+	var collision_normal: = shadow_raycast.get_collision_normal()
+	
+	shadow_sprite3D.visible = true
+	shadow_sprite3D.global_transform.origin = collision_point + (up_direction.normalized() * 0.1)
 
 
 func process_physics(delta: float) -> void:

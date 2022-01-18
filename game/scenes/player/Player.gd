@@ -1,3 +1,4 @@
+tool
 extends KinematicBody
 
 const YAFSM: = preload("res://addons/imjp94.yafsm/YAFSM.gd")
@@ -37,12 +38,19 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	process_shadow(delta)
+	
+	if Engine.editor_hint:
+		return
+	
 	process_input(delta)
 	process_animation(delta)
-	process_shadow(delta)
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.editor_hint:
+		return
+	
 	process_physics(delta)
 
 

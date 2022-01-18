@@ -99,13 +99,14 @@ func process_input(delta: float) -> void:
 
 
 func process_auto_rotation(delta: float) -> void:
-	var camera_origin: = camera_pivot.global_transform.origin
+	var camera_origin: = camera.global_transform.origin
 	var target_origin: = target.global_transform.origin
 	
 	var angle: = camera_origin.signed_angle_to(target_origin, Vector3.UP)
-	prints(angle)
-	
-	camera_pivot.rotate_object_local(Vector3.UP, angle * 2.0 * delta)
+	var angle_deg: = rad2deg(angle)
+	prints(angle_deg)
+	if abs(angle_deg) < 10.0:
+		return
 
 
 func set_capturing_mouse(val: bool) -> void:

@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=1]
-[ext_resource path="res://assets/models/scenery/algae/algae.glb" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/scenery/rocks/rock_1/rock_1.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/models/scenery/rocks/rock_1/textures/rock.png" type="Texture" id=2]
+[ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 1 )
+shader = ExtResource( 3 )
 shader_param/precision_ratio = Vector2( 4, 3 )
 shader_param/precision_height = 240.0
 shader_param/precision_multiplier = 1.0
@@ -18,15 +18,13 @@ shader_param/color_depth = 32
 shader_param/fog_enabled = true
 shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
 shader_param/min_fog_distance = 10.0
-shader_param/max_fog_distance = 30.0
+shader_param/max_fog_distance = 40.0
 shader_param/draw_distance_enabled = true
 shader_param/min_draw_distance = 2.0
 shader_param/max_draw_distance = 40.0
+shader_param/albedoTex = ExtResource( 2 )
 
-[node name="Algae" instance=ExtResource( 2 )]
+[node name="Rock" instance=ExtResource( 1 )]
 
-[node name="Algae" parent="." index="0"]
+[node name="Rock1" parent="." index="0"]
 material/0 = SubResource( 1 )
-
-[node name="Shadow" parent="." index="1" instance=ExtResource( 3 )]
-transform = Transform( 1.72105, 0, 0, 0, -2.18557e-08, 0.5, 0, -1.48141, -6.47545e-08, 0, 0.0937059, 0 )

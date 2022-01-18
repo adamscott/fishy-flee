@@ -17,7 +17,8 @@ uniform vec4 fog_color : hint_color = vec4(0.5, 0.7, 1.0, 1.0);
 uniform float min_fog_distance : hint_range(0, 100) = 10;
 uniform float max_fog_distance : hint_range(0, 100) = 40;
 uniform bool draw_distance_enabled = true;
-uniform float draw_distance : hint_range(0, 100) = 40.0;
+uniform float min_draw_distance : hint_range(0, 100) = 2.0;
+uniform float max_draw_distance : hint_range(0, 100) = 40.0;
 
 varying vec3 cubemap_UV;
 varying float fog_weight;
@@ -122,7 +123,7 @@ void vertex()
 
 void fragment()
 {
-	if (draw_distance_enabled && origin_distance > draw_distance) discard;
+	if (draw_distance_enabled && (origin_distance > max_draw_distance || origin_distance < min_draw_distance)) discard;
 
 	ALBEDO = (COLOR * modulate_color).rgb;
 	vec4 tex = texture(cubemap, cubemap_UV * cubemap_uv_scale) * metal_modulate_color;

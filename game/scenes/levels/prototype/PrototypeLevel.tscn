@@ -1,20 +1,40 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/camera/gimbal/CameraGimbal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/camera/rail/CameraRail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/models/scenery/algae/Algae.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/models/scenery/rocks/rock_1/Rock1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=6]
+[ext_resource path="res://assets/models/scenery/sand/dune/Dune.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ProceduralSky" id=1]
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
 background_sky = SubResource( 1 )
-background_color = Color( 1, 1, 1, 1 )
-ambient_light_color = Color( 1, 1, 1, 1 )
+background_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+ambient_light_color = Color( 0.941176, 0.964706, 0.941176, 1 )
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 9.73056, 0.0222148, 26.7628 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 6 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = false
+shader_param/min_draw_distance = 2.0
+shader_param/max_draw_distance = 40.0
 
 [node name="PrototypeLevel" type="Spatial"]
 script = ExtResource( 1 )
@@ -24,47 +44,115 @@ environment = SubResource( 2 )
 
 [node name="Ground" type="Spatial" parent="."]
 
-[node name="StaticBody" type="StaticBody" parent="Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.0438 )
+[node name="CSGBox" type="CSGBox" parent="Ground"]
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
-shape = SubResource( 3 )
+[node name="CSGBox2" type="CSGBox" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
 
-[node name="StaticBody3" type="StaticBody" parent="Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.9017 )
+[node name="CSGBox3" type="CSGBox" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -97 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
 
-[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody3"]
-shape = SubResource( 3 )
-
-[node name="StaticBody2" type="StaticBody" parent="Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 39.1899 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody2"]
-shape = SubResource( 3 )
+[node name="CSGBox4" type="CSGBox" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -145 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
 
 [node name="Scenery" type="Spatial" parent="."]
 
 [node name="Algae" parent="Scenery" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.30807, 0, -20.5284 )
+transform = Transform( 0.222791, 0, 0.974866, 0, 1, 0, -0.974866, 0, 0.222791, 6.30807, 0, -20.5284 )
+
+[node name="Algae6" parent="Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.772379, 0, -0.635162, 0, 1, 0, 0.635162, 0, -0.772379, -3.78725, 0, -8.12619 )
+
+[node name="Algae7" parent="Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.391117, 0, 0.920341, 0, 1, 0, -0.920341, 0, 0.391117, 1.92967, 0, -4.34747 )
 
 [node name="Algae2" parent="Scenery" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61059, 0, -22.9737 )
+transform = Transform( -0.350436, 0, -0.936587, 0, 1, 0, 0.936587, 0, -0.350436, 5.61059, 0, -22.9737 )
 
 [node name="Algae3" parent="Scenery" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57824, 2.38419e-07, -33.0624 )
+transform = Transform( 0.515891, 0, 0.856655, 0, 1, 0, -0.856655, 0, 0.515891, -4.57824, 2.38419e-07, -33.0624 )
 
 [node name="Algae4" parent="Scenery" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.24189, 2.38419e-07, -42.4841 )
+transform = Transform( -0.880643, 0, 0.473781, 0, 1, 0, -0.473781, 0, -0.880643, -4.24189, 2.38419e-07, -42.4841 )
 
 [node name="Algae5" parent="Scenery" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.46521, 2.38419e-07, -48.7392 )
+transform = Transform( 0.587022, 0, -0.809571, 0, 1, 0, 0.809571, 0, 0.587022, 5.46521, 2.38419e-07, -48.7392 )
+
+[node name="Algae8" parent="Scenery" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.46521, 0.189239, -12.4955 )
+
+[node name="Algae9" parent="Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.18474, 0, -0.982787, 0, 1, 0, 0.982787, 0, 0.18474, 6.63509, 0.189239, -11.6219 )
+
+[node name="Rock" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.907169, 0, 0.420767, 0, 1, 0, -0.420767, 0, 0.907169, -2.60224, 0.374854, -14.651 )
+
+[node name="Shadow2" parent="Scenery/Rock" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock2" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.840008, 0, -0.542573, 0, 1, 0, 0.542573, 0, 0.840008, 3.78312, 0.0279908, -19.0375 )
+
+[node name="Shadow3" parent="Scenery/Rock2" instance=ExtResource( 8 )]
+transform = Transform( 1.77132, -1.64333, -2.71429e-08, 0, -1.1568e-07, 1, -1.40323, -2.0744, -3.4263e-08, -0.204529, 0.0502057, -0.0346203 )
+
+[node name="Arch" type="Spatial" parent="Scenery"]
+transform = Transform( 0.784235, 0, 0.620464, 0, 1, 0, -0.620464, 0, 0.784235, -1.41311, 0.35266, -22.1986 )
+
+[node name="Rock3" parent="Scenery/Arch" instance=ExtResource( 5 )]
+
+[node name="Rock4" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( 0.204677, 0.749779, -0.629236, -0.749779, -0.293156, -0.593203, -0.629236, 0.593203, 0.502167, 0.606677, 1.2771, -0.218531 )
+
+[node name="Rock5" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( 0.124741, 0.145443, -0.981471, 0.891466, 0.417835, 0.175221, 0.435578, -0.896805, -0.0775365, 0.0531578, 0.34491, -0.77636 )
+
+[node name="Rock6" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( 0.786852, 0.573152, -0.228825, 0.14287, -0.529884, -0.835949, -0.600377, 0.625076, -0.498826, 1.49501, 1.82846, 0.608543 )
+
+[node name="Rock7" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( -0.99877, 0, 0.0495818, 0, 1, 0, -0.0495818, 0, -0.99877, 3.38394, -0.822221, 1.70103 )
+
+[node name="Rock8" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( -0.235624, -0.719445, 0.65336, -0.749779, -0.293156, -0.593203, 0.618314, -0.629649, -0.470351, 3.12775, 2.00712, 1.43346 )
+
+[node name="Rock9" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( -0.102991, -0.18973, 0.97642, 0.891466, 0.417835, 0.175221, -0.441227, 0.888491, 0.126104, 3.65293, 1.07492, 2.01805 )
+
+[node name="Rock10" parent="Scenery/Arch" instance=ExtResource( 5 )]
+transform = Transform( -0.815652, -0.541455, 0.203811, 0.14287, -0.529884, -0.835949, 0.560625, -0.652725, 0.509558, 2.28152, 1.73625, 0.56336 )
+
+[node name="Shadow" parent="Scenery/Arch" instance=ExtResource( 8 )]
+transform = Transform( 4.68423, 0.679214, 1.18468e-08, 0, -5.47729e-08, 0.5, 3.02145, -1.05301, -1.83664e-08, 1.657, -0.219351, 0.485113 )
+
+[node name="Dune" parent="Scenery" instance=ExtResource( 7 )]
+transform = Transform( 3.34984, 0, 0, 0, 1, 0, 0, 0, 2.84668, 4.81495, 0.0963001, -11.1562 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45392, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95586, 0 )
 
-[node name="CameraGimbal" parent="." instance=ExtResource( 3 )]
-_target = NodePath("../Player")
+[node name="CameraRail" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.947003, 0.321225, 0, -0.321225, 0.947003, 0, 1.94528, 2.24381 )
 current = true
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.44544, 0 )
+fov = 50.0
+_target = NodePath("../Player")

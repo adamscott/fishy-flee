@@ -21,3 +21,4 @@ shape = SubResource( 51 )
 spring_length = 0.5
 
 [node name="Camera" type="Camera" parent="CameraRoll/CameraPivot/CameraBoom/SpringArm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )

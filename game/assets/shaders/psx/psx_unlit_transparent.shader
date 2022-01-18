@@ -18,7 +18,8 @@ uniform vec4 fog_color : hint_color = vec4(0.5, 0.7, 1.0, 1.0);
 uniform float min_fog_distance : hint_range(0, 100) = 10;
 uniform float max_fog_distance : hint_range(0, 100) = 40;
 uniform bool draw_distance_enabled = true;
-uniform float draw_distance : hint_range(0, 100) = 40.0;
+uniform float min_draw_distance : hint_range(0, 100) = 2.0;
+uniform float max_draw_distance : hint_range(0, 100) = 40.0;
 
 varying float fog_weight;
 varying float vertex_distance;
@@ -109,7 +110,7 @@ void vertex()
 
 void fragment()
 {
-	if (draw_distance_enabled && origin_distance > draw_distance) discard;
+	if (draw_distance_enabled && (origin_distance > max_draw_distance || origin_distance < min_draw_distance)) discard;
 
 	vec4 tex = texture(albedoTex, UV) * modulate_color;
 	ALBEDO = COLOR.rgb;

@@ -38,6 +38,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	process_input(delta)
+	process_animation(delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -71,6 +72,11 @@ func process_input(delta: float) -> void:
 	var direction_forwards: = camera_transform.basis.z * input_direction.z * not_up_mask
 	
 	move_direction = (direction_right + direction_up + direction_forwards).normalized()
+
+
+func process_animation(delta: float) -> void:
+	var ratio_horizontal: = velocity.length() / max_velocity_horizontal
+	$Skin/Salmon/AnimationTree["parameters/velocity/blend_position"] = ratio_horizontal
 
 
 func process_physics(delta: float) -> void:

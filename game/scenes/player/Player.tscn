@@ -1006,6 +1006,7 @@ enabled = true
 cast_to = Vector3( 0, -1000, 0 )
 
 [node name="Shadow" parent="RayCastsContainer/RayCasts/ShadowRayCast" instance=ExtResource( 7 )]
+visible = false
 
 [connection signal="transited" from="StateMachines/MoveStateMachine" to="." method="_on_MoveStateMachine_transited"]
 

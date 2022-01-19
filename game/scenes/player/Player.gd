@@ -14,15 +14,18 @@ export (float) var friction_horizontal: = 0.8
 export (float) var friction_vertical: = 1.0
 export (float) var rotation_speed_factor: = PI * 2.0
 
-onready var skin: Spatial = $Skin
-
-onready var move_sm: StateMachinePlayer = $StateMachines/MoveStateMachine as StateMachinePlayer
-
 var velocity: = Vector3.ZERO
 var acceleration: = Vector3.ZERO
 
 var input_direction: = Vector3.ZERO
 var move_direction: = Vector3.ZERO
+
+onready var skin: Spatial = $Skin
+
+onready var move_sm: StateMachinePlayer = $StateMachines/MoveStateMachine as StateMachinePlayer
+
+onready var shadow_raycast: RayCast = $RayCastsContainer/RayCasts/ShadowRayCast as RayCast
+onready var shadow_sprite3D: Sprite3D = $RayCastsContainer/RayCasts/ShadowRayCast/Shadow as Sprite3D
 
 
 func _on_MoveStateMachine_transited(from, to) -> void:
@@ -89,8 +92,8 @@ func process_animation(delta: float) -> void:
 
 
 func process_shadow(delta: float) -> void:
-	var shadow_raycast: RayCast = $RayCastsContainer/RayCasts/ShadowRayCast
-	var shadow_sprite3D: Sprite3D = $RayCastsContainer/RayCasts/ShadowRayCast/Shadow
+	shadow_raycast = $RayCastsContainer/RayCasts/ShadowRayCast
+	shadow_sprite3D = $RayCastsContainer/RayCasts/ShadowRayCast/Shadow
 	
 	if not shadow_raycast.is_colliding():
 		shadow_sprite3D.visible = false
@@ -202,3 +205,4 @@ func apply_friction(delta: float) -> void:
 func apply_rotation_redirection(delta: float) -> void:
 	var forward: = -global_transform.basis.z
 	velocity = forward.normalized() * velocity.length()
+

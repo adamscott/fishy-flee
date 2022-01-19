@@ -13,15 +13,4 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	limit_player_height(delta)
-
-
-func limit_player_height(delta: float) -> void:
-	if player.global_transform.origin.y > max_height:
-		player.global_transform.origin.y = max_height
-
-	if player.global_transform.origin.x > max_side_width:
-		player.global_transform.origin.x = max_side_width
-	
-	if player.global_transform.origin.x < -max_side_width:
-		player.global_transform.origin.x = -max_side_width
+	pass

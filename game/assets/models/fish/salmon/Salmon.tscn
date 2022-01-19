@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/models/fish/salmon/salmon.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/fish/salmon/textures/salmon.png" type="Texture" id=2]
 [ext_resource path="res://assets/shaders/psx/psx_lit.shader" type="Shader" id=3]
+[ext_resource path="res://assets/models/fish/salmon/salmon_active_blendtree.tres" type="AnimationNodeBlendTree" id=4]
+[ext_resource path="res://assets/models/fish/salmon/Salmon.gd" type="Script" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -24,58 +26,41 @@ shader_param/min_draw_distance = 2.0
 shader_param/max_draw_distance = 40.0
 shader_param/albedoTex = ExtResource( 2 )
 
-[sub_resource type="AnimationNodeAdd2" id=2]
-filter_enabled = true
-filters = [ "root/Skeleton:root.x", "root/Skeleton:spine_01.x" ]
-
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "RESET"
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "turn_left"
-
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "turn_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=6]
-blend_point_0/node = SubResource( 3 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 4 )
-blend_point_1/pos = -1.0
-blend_point_2/node = SubResource( 5 )
-blend_point_2/pos = 1.0
-
 [sub_resource type="AnimationNodeAnimation" id=7]
-animation = "idle_cycle"
+animation = "dead"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "swim_cycle"
+[sub_resource type="AnimationNodeBlendTree" id=2]
+graph_offset = Vector2( -491, -2 )
+nodes/Animation/node = SubResource( 7 )
+nodes/Animation/position = Vector2( -20, 140 )
+node_connections = [ "output", 0, "Animation" ]
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=9]
-blend_point_0/node = SubResource( 7 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 8 )
-blend_point_1/pos = 1.0
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
 
-[sub_resource type="AnimationNodeBlendTree" id=10]
-graph_offset = Vector2( -681, 87.75 )
-nodes/turn_add/node = SubResource( 2 )
-nodes/turn_add/position = Vector2( 20, 100 )
-nodes/turn_direction/node = SubResource( 6 )
-nodes/turn_direction/position = Vector2( -340, 260 )
-nodes/velocity/node = SubResource( 9 )
-nodes/velocity/position = Vector2( -360, 120 )
-node_connections = [ "output", 0, "turn_add", "turn_add", 0, "velocity", "turn_add", 1, "turn_direction" ]
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/active/node = ExtResource( 4 )
+states/active/position = Vector2( 318, 92 )
+states/dead/node = SubResource( 2 )
+states/dead/position = Vector2( 545, 92 )
+transitions = [ "active", "dead", SubResource( 3 ) ]
+start_node = "active"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="Salmon" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
 
 [node name="Salmon" parent="root/Skeleton" index="0"]
 material/0 = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/turn_add/add_amount = 0
-parameters/turn_direction/blend_position = 0
-parameters/velocity/blend_position = 0
+parameters/playback = SubResource( 6 )
+parameters/active/charge/TimeScale/scale = 1.25
+parameters/active/charge_oneshot/active = false
+parameters/active/turn_add/add_amount = 0
+parameters/active/turn_direction/blend_position = 0
+parameters/active/velocity/blend_position = 0
+parameters/active/velocity_timescale/scale = 1.0

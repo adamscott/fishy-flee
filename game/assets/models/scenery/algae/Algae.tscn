@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=1]
 [ext_resource path="res://assets/models/scenery/algae/algae.glb" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/scenery/algae/Algae.gd" type="Script" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -24,6 +25,7 @@ shader_param/min_draw_distance = 2.0
 shader_param/max_draw_distance = 40.0
 
 [node name="Algae" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
 
 [node name="Algae" parent="." index="0"]
 material/0 = SubResource( 1 )

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/models/scenery/algae_wall/AlgaeWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/scenery/algae_wall/AlgaeWall.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.036482, 1.15929, 1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 1.30035, 1.12954 )
+
+[node name="AlgaeWall" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="AlgaeWall" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1.38964, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Wall" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1261, 0 )
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall"]
+shape = SubResource( 1 )
+
+[node name="DisableCollisionArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.970531, 0.949315, 0 )
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="DisableCollisionArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0757959, 0 )
+shape = SubResource( 2 )
+
+[node name="Shadow" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.5, 0, 0, 0, -1.08371e-07, 0.5, 0, -2.47925, -2.18557e-08, 0, 0.0312022, -1.36389e-09 )
+
+[connection signal="body_entered" from="DisableCollisionArea" to="." method="_on_DisableCollisionArea_body_entered"]
+[connection signal="body_exited" from="DisableCollisionArea" to="." method="_on_DisableCollisionArea_body_exited"]

@@ -1,0 +1,209 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=1]
+[ext_resource path="res://scenes/scenery/algae_wall/AlgaeWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/scenery/rocks/rock_1/Rock1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = false
+shader_param/min_draw_distance = 2.0
+shader_param/max_draw_distance = 40.0
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boxes/ShippingBox:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.131207, 1.65808, -0.799747 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "default"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boxes/ShippingBox:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.0695412, 1.65808, -0.799747 ), Vector3( 5.49422, 1.65808, -0.799747 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boxes/ShippingBox2:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 5.95596, 0.795199, 5.23429 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boxes/ShippingBox2:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 5.95596, 0.795199, 5.23429 ), Vector3( 0.312507, 0.795199, 5.23429 ) ]
+}
+
+[node name="PushWallSetPiece" type="Spatial"]
+
+[node name="Floor" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Floor"]
+material_override = SubResource( 1 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 21.5583
+
+[node name="Rocks" type="Spatial" parent="."]
+
+[node name="Rock" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.518346, 0.05, -3.5632 )
+
+[node name="Rock2" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.8568, -0.0110479, 0.515531, -0.442687, -0.496929, -0.746385, 0.264428, -0.867721, 0.420877, -0.518345, 0.91285, -3.5632 )
+
+[node name="Rock3" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.650354, 0.596979, 0.469739, -0.410481, 0.796504, -0.443944, -0.639175, 0.095902, 0.763058, -0.518345, 2.22843, -3.5632 )
+
+[node name="Rock4" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.650354, 0.596979, 0.469739, 0.347636, -0.783723, 0.514711, 0.675417, -0.171446, -0.717229, -0.518345, 1.91255, -3.5632 )
+
+[node name="Rock5" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.16756, 0, 0.985862, 0, 1, 0, -0.985862, 0, -0.16756, -1.95112, 0.05, -3.5632 )
+
+[node name="Rock6" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.404255, 0.853602, -0.328544, -0.442687, -0.496929, -0.746385, -0.800378, -0.156287, 0.578765, -1.95112, 0.91285, -3.56319 )
+
+[node name="Rock7" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.739112, 0.00548387, -0.67356, -0.410481, 0.796504, -0.443944, 0.534059, 0.604608, 0.590957, -1.95112, 2.22843, -3.5632 )
+
+[node name="Rock8" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.556895, 0.269053, 0.785798, 0.347636, -0.783723, 0.514711, 0.754333, 0.559811, 0.342919, -1.95112, 1.91255, -3.5632 )
+
+[node name="Rock9" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.673, 0, -0.739643, 0, 1, 0, 0.739643, 0, -0.673, -2.97966, 0.05, -3.56319 )
+
+[node name="Rock10" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.381044, -0.649239, 0.658251, -0.442687, -0.496929, -0.746385, 0.811686, -0.575804, -0.0980585, -2.97966, 0.91285, -3.56319 )
+
+[node name="Rock11" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.035073, 0.4727, 0.880525, -0.410481, 0.796504, -0.443944, -0.911194, -0.377009, 0.166099, -2.97966, 2.22843, -3.56319 )
+
+[node name="Rock12" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.937256, 0.274958, -0.214359, 0.347636, -0.783723, 0.514711, -0.0264743, -0.556935, -0.830134, -2.97966, 1.91255, -3.56319 )
+
+[node name="Rock13" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.629782, 0, -0.776772, 0, 1, 0, 0.776772, 0, 0.629782, -3.74523, 0.05, -3.56319 )
+
+[node name="Rock14" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.744997, -0.667064, 0.002254, -0.442687, -0.496929, -0.746385, 0.499006, 0.555057, -0.665511, -3.74523, 0.91285, -3.56319 )
+
+[node name="Rock15" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( -0.906075, -0.301472, 0.296889, -0.410481, 0.796504, -0.443944, -0.102637, -0.524114, -0.845441, -3.74523, 2.22843, -3.56319 )
+
+[node name="Rock16" parent="Rocks" instance=ExtResource( 3 )]
+transform = Transform( 0.115064, -0.509141, -0.852957, 0.347636, -0.783723, 0.514711, -0.930543, -0.355743, 0.0868171, -3.74523, 1.91255, -3.56319 )
+
+[node name="Shadow2" parent="Rocks" instance=ExtResource( 5 )]
+transform = Transform( 3.36006, 0, 0, 0, -3.28518e-08, 0.751562, 0, -3.27169, -1.4301e-07, -0.596869, 0.0799775, -3.48015 )
+
+[node name="Shadow3" parent="Rocks" instance=ExtResource( 5 )]
+transform = Transform( 3.36006, 0, 0, 0, -3.28518e-08, 0.751562, 0, -3.27169, -1.4301e-07, -1.76838, 0.0799775, -3.48015 )
+
+[node name="Shadow4" parent="Rocks" instance=ExtResource( 5 )]
+transform = Transform( 3.36006, 0, 0, 0, -3.28518e-08, 0.751562, 0, -3.27169, -1.4301e-07, -3.20837, 0.0799775, -3.48015 )
+
+[node name="Shadow5" parent="Rocks" instance=ExtResource( 5 )]
+transform = Transform( 3.36006, 0, 0, 0, -3.28518e-08, 0.751562, 0, -3.27169, -1.4301e-07, -3.20837, 0.0799775, -3.48015 )
+
+[node name="Algae" type="Spatial" parent="."]
+
+[node name="AlgaeWall" parent="Algae" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491569, 0.0499992, 1.093 )
+
+[node name="AlgaeWall2" parent="Algae" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491569, 0.0499992, -0.0848389 )
+
+[node name="AlgaeWall3" parent="Algae" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491569, 0.0499992, -1.3561 )
+
+[node name="AlgaeWall4" parent="Algae" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491569, 0.0499992, -2.59322 )
+
+[node name="AlgaeWall5" parent="Algae" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491569, 0.0499992, 2.8068 )
+
+[node name="AlgaeWall6" parent="Algae" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491569, 0.0499992, 4.35624 )
+
+[node name="Boxes" type="Spatial" parent="."]
+
+[node name="ShippingBox" parent="Boxes" instance=ExtResource( 4 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 4.60781, -0.131207, 1.65808, -0.799747 )
+
+[node name="Shadow" parent="Boxes/ShippingBox" instance=ExtResource( 5 )]
+transform = Transform( 2.23539, 0, 0, 0, -2.18557e-08, 0.5, 0, -1.13451, -4.95912e-08, 0, -1.05207, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boxes/ShippingBox"]
+root_node = NodePath("../../..")
+autoplay = "default"
+anims/RESET = SubResource( 4 )
+anims/default = SubResource( 5 )
+
+[node name="ShippingBox2" parent="Boxes" instance=ExtResource( 4 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 5.85374, 5.95596, 0.795199, 5.23429 )
+
+[node name="Shadow2" parent="Boxes/ShippingBox2" instance=ExtResource( 5 )]
+transform = Transform( 3.65258, 0, 0, 0, -2.18557e-08, 0.5, 0, -1.484, -6.48676e-08, -0.0972438, -0.476814, 0.0144537 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boxes/ShippingBox2"]
+root_node = NodePath("../../..")
+autoplay = "default"
+anims/RESET = SubResource( 3 )
+anims/default = SubResource( 2 )

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/models/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 0.501658, 0.501393 )
+
+[node name="ShippingBox" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="ShippingBox" parent="." instance=ExtResource( 1 )]

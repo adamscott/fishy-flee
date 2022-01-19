@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/shaders/psx/psx_unlit_transparent.shader" type="Shader" id=1]
+[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/scenery/rocks/rock_1/Rock1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/shadow/shadow.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = ExtResource( 1 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 1, 1, 1, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = true
+shader_param/min_draw_distance = 0.0
+shader_param/max_draw_distance = 40.0
+shader_param/albedoTex = ExtResource( 4 )
+
+[node name="Arch" type="Spatial"]
+
+[node name="Rock3" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.797542, 0, -0.603264, 0, 1, 0, 0.603264, 0, -0.797542, 1.63772, 0.315217, -0.0555575 )
+
+[node name="Rock4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.216357, -0.955838, 0.198903, -0.749779, -0.293156, -0.593203, 0.625316, -0.0207897, -0.780094, 1.28573, 1.59232, 0.484786 )
+
+[node name="Rock5" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.362255, 0.425013, 0.829539, 0.891466, 0.417835, 0.175221, -0.27214, 0.80298, -0.530247, 2.06367, 0.660127, 0.59575 )
+
+[node name="Rock6" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.265362, -0.834198, 0.483421, 0.14287, -0.529884, -0.835949, 0.953505, -0.152762, 0.259793, 0.0782314, 2.14368, 0.36108 )
+
+[node name="Rock7" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.826472, 0, 0.562978, 0, 1, 0, -0.562978, 0, 0.826472, -2.08731, -0.507004, 0.629271 )
+
+[node name="Rock8" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.185086, 0.953632, -0.237336, -0.749779, -0.293156, -0.593203, -0.635275, 0.0681563, 0.769273, -1.72155, 2.32234, 0.688136 )
+
+[node name="Rock9" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.348316, -0.384677, -0.85481, 0.891466, 0.417835, 0.175221, 0.289766, -0.823066, 0.488466, -2.49308, 1.39014, 0.538726 )
+
+[node name="Rock10" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.312312, 0.825598, -0.469946, 0.14287, -0.529884, -0.835949, -0.939175, 0.193935, -0.283442, -0.521767, 2.05147, 0.871595 )
+
+[node name="Shadow" parent="." instance=ExtResource( 2 )]
+transform = Transform( -5.5586, 0.0935413, 1.63147e-09, 0, -5.47729e-08, 0.5, 0.416093, 1.24956, 2.17947e-08, 0.0235513, 0.0958661, 0.557164 )
+material_override = SubResource( 20 )

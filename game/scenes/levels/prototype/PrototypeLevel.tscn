@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=6]
 [ext_resource path="res://assets/models/scenery/sand/dune/Dune.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/scenery/algae_wall/AlgaeWall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/levels/prototype/set_pieces/push_wall/PushWall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/levels/prototype/set_pieces/arch/Arch.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/models/scenery/fishing_net/FishingNet.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/models/fish/salmon/Salmon.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -505,7 +506,7 @@ transform = Transform( -0.790476, 0, 0.612493, 0, 1, 0, -0.612493, 0, -0.790476,
 transform = Transform( 0.745732, 0, 0.666246, 0, 1, 0, -0.666246, 0, 0.745732, 5.80946, 2.38419e-07, -63.3576 )
 
 [node name="Algae15" parent="Part1/Scenery" instance=ExtResource( 4 )]
-transform = Transform( -0.370282, 0, 0.92892, 0, 1, 0, -0.92892, 0, -0.370282, -4.89474, 2.38419e-07, -67.0626 )
+transform = Transform( -0.370282, 0, 0.92892, 0, 1, 0, -0.92892, 0, -0.370282, -6.49028, 2.38419e-07, -67.0626 )
 
 [node name="Algae5" parent="Part1/Scenery" instance=ExtResource( 4 )]
 transform = Transform( 0.587022, 0, -0.809571, 0, 1, 0, 0.809571, 0, 0.587022, 5.46521, 2.38419e-07, -28.0316 )
@@ -574,11 +575,56 @@ transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, 16.02
 [node name="Dune7" parent="Part1/Scenery" instance=ExtResource( 7 )]
 transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, -5.52281, 0.0963001, -56.14 )
 
-[node name="ShippingBox" parent="Part1/Scenery" instance=ExtResource( 9 )]
-transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, -0.192884, 1.52778, -35.463 )
+[node name="ShippingBox" parent="Part1/Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, -0.192884, 1.27659, -35.463 )
 
 [node name="Shadow" parent="Part1/Scenery/ShippingBox" instance=ExtResource( 8 )]
-transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.4473, 0 )
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.19611, 0 )
+
+[node name="ShippingBox2" parent="Part1/Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, 1.75013, 1.27659, -35.884 )
+
+[node name="Shadow" parent="Part1/Scenery/ShippingBox2" instance=ExtResource( 8 )]
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.19611, 0 )
+
+[node name="ShippingBox3" parent="Part1/Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, 3.73203, 1.27659, -36.3133 )
+
+[node name="Shadow" parent="Part1/Scenery/ShippingBox3" instance=ExtResource( 8 )]
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.19611, 0 )
+
+[node name="ShippingBox4" parent="Part1/Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, -2.14001, 1.27659, -35.0412 )
+
+[node name="Shadow" parent="Part1/Scenery/ShippingBox4" instance=ExtResource( 8 )]
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.19611, 0 )
+
+[node name="ShippingBox5" parent="Part1/Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, -4.05623, 1.27659, -34.626 )
+
+[node name="Shadow" parent="Part1/Scenery/ShippingBox5" instance=ExtResource( 8 )]
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.19611, 0 )
+
+[node name="AlgaeWall2" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( 0.737053, 0, 0.675835, 0, 1, 0, -0.675835, 0, 0.737053, -3.30484, 0.0500004, -71.7471 )
+
+[node name="AlgaeWall5" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( 0.214428, 0, 0.97674, 0, 1, 0, -0.97674, 0, 0.214428, -2.0989, 0.0500004, -70.9276 )
+
+[node name="AlgaeWall6" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( 0.000610888, 0, -1, 0, 1, 0, 1, 0, 0.000610888, -0.811964, 0.0500004, -70.7246 )
+
+[node name="AlgaeWall7" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( -0.0105939, 0, 0.999944, 0, 1, 0, -0.999944, 0, -0.0105939, 0.848066, 0.0500004, -70.7246 )
+
+[node name="AlgaeWall" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( -0.406705, 0, 0.91356, 0, 1, 0, -0.91356, 0, -0.406705, 2.33002, 0.0500002, -71.0974 )
+
+[node name="AlgaeWall3" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( 0.819732, 0, 0.572747, 0, 1, 0, -0.572747, 0, 0.819732, 3.59545, 0.0500002, -70.5475 )
+
+[node name="AlgaeWall4" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( 0.970934, 0, -0.239347, 0, 1, 0, 0.239347, 0, 0.970934, 3.94946, 0.0500002, -68.989 )
 
 [node name="SetPieces" type="Spatial" parent="Part1"]
 

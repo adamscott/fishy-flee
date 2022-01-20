@@ -2,6 +2,8 @@ extends Spatial
 
 const Player: = preload("res://scenes/player/Player.gd")
 
+export (bool) var chasing_atmosphere: = false
+
 onready var player: Player = $Player
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 

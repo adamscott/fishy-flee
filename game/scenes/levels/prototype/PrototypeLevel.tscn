@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,12 @@
 [ext_resource path="res://assets/models/scenery/fishing_net/FishingNet.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/models/fish/salmon/Salmon.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=15]
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=16]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=17]
+[ext_resource path="res://assets/songs/ocean_overdrive/ocean_overdrive_Bass.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/songs/ocean_overdrive/ocean_overdrive_Synth.wav" type="AudioStream" id=19]
+[ext_resource path="res://addons/mixing-desk/music/containers/autofade_cont.gd" type="Script" id=20]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -364,6 +370,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:chasing_atmosphere")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="PrototypeLevel" type="Spatial"]
 script = ExtResource( 1 )
@@ -573,7 +591,7 @@ transform = Transform( 2.63148, 0, -2.96713, 0, 1, 0, 3.49158, 0, 2.23622, -11.8
 transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, 16.0229, 0.0963001, -35.539 )
 
 [node name="Dune7" parent="Part1/Scenery" instance=ExtResource( 7 )]
-transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, -5.52281, 0.0963001, -56.14 )
+transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, -5.35682, 0.0963001, -55.2958 )
 
 [node name="ShippingBox" parent="Part1/Scenery" instance=ExtResource( 14 )]
 transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, -0.192884, 1.27659, -35.463 )
@@ -674,5 +692,34 @@ shape = SubResource( 4 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )
 anims/cutscene_net_approaching = SubResource( 9 )
+
+[node name="MixingDeskMusic" type="Node" parent="."]
+script = ExtResource( 15 )
+play_mode = 1
+autoplay = true
+autoplay_song = NodePath("OceanOverdriveSong")
+
+[node name="OceanOverdriveSong" type="Node" parent="MixingDeskMusic"]
+script = ExtResource( 16 )
+tempo = 70
+bars = 8
+beats_in_bar = 4
+
+[node name="CoreContainer" type="Node" parent="MixingDeskMusic/OceanOverdriveSong"]
+script = ExtResource( 17 )
+
+[node name="OceanOverdriveSynth" type="AudioStreamPlayer" parent="MixingDeskMusic/OceanOverdriveSong/CoreContainer"]
+stream = ExtResource( 19 )
+
+[node name="AutoFadeContainer" type="Node" parent="MixingDeskMusic/OceanOverdriveSong"]
+script = ExtResource( 20 )
+play_style = 1
+toggle = true
+target_node = NodePath("../../..")
+target_property = "chasing_atmosphere"
+track_speed = 1.0
+
+[node name="OceanOverdriveBass" type="AudioStreamPlayer" parent="MixingDeskMusic/OceanOverdriveSong/AutoFadeContainer"]
+stream = ExtResource( 18 )
 
 [connection signal="body_entered" from="Part1/Part1CutsceneArea" to="." method="_on_Part1CutsceneArea_body_entered"]

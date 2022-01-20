@@ -80,7 +80,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/scatter/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/mixing-desk/plugin.cfg", "res://addons/scatter/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [game]
 

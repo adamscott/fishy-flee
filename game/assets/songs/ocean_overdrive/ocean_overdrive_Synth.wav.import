@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ocean_overdrive_Synth.wav-991eb723bf0a367b71dc0cba9d26d563.sample"
+
+[deps]
+
+source_file="res://assets/songs/ocean_overdrive/ocean_overdrive_Synth.wav"
+dest_files=[ "res://.import/ocean_overdrive_Synth.wav-991eb723bf0a367b71dc0cba9d26d563.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -14,6 +14,7 @@ export (float) var friction_horizontal: = 0.8
 export (float) var friction_vertical: = 1.0
 export (float) var rotation_speed_factor: = PI * 2.0
 export (float) var rush_velocity: = 10.0
+export (bool) var in_cutscene: = false setget set_in_cutscene
 
 var velocity: = Vector3.ZERO
 var acceleration: = Vector3.ZERO
@@ -33,6 +34,18 @@ onready var shadow_sprite3D: Sprite3D = $RayCastsContainer/RayCasts/ShadowRayCas
 onready var salmon_at: AnimationTree = $Skin/Salmon/AnimationTree as AnimationTree
 
 onready var charge_rush_timer: Timer = $Timers/ChargeRushTimer as Timer
+
+
+func set_in_cutscene(val: bool) -> void:
+	in_cutscene = val
+	
+	if Engine.editor_hint or not is_inside_tree():
+		return
+	
+	if in_cutscene:
+		main_sm.set_trigger("cutscene_start")
+	else:
+		main_sm.set_trigger("cutscene_end")
 
 
 func _on_MainStateMachine_transited(from, to) -> void:
@@ -74,7 +87,7 @@ func _on_ChargeRushTimer_timeout() -> void:
 
 
 func _ready() -> void:
-	pass
+	set_in_cutscene(in_cutscene)
 
 
 func _process(delta: float) -> void:
@@ -196,7 +209,8 @@ func process_physics_after_move_and_slide(delta: float) -> void:
 
 func apply_rotation(delta: float) -> void:
 	match get_state():
-		{ "main": "Charge", "charge": "Rush", .. }:
+		{ "main": "Charge", "charge": "Rush", .. }, \
+		{ "main": "Cutscene", .. }:
 			return
 	
 	if move_direction.is_equal_approx(Vector3.ZERO):
@@ -211,7 +225,8 @@ func apply_rotation(delta: float) -> void:
 
 func apply_movement(delta: float) -> void:
 	match get_state():
-		{ "main": "Charge", .. }:
+		{ "main": "Charge", .. },\
+		{ "main": "Cutscene", .. }:
 			return
 	
 	var vertical_direction: = move_direction * up_direction
@@ -259,6 +274,10 @@ func apply_charging(delta: float) -> void:
 
 
 func update_camera(delta: float) -> void:
+	match get_state():
+		{ "main": "Cutscene", .. }:
+			return
+	
 	var cardinal_input: = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	input_direction = Vector3(
 		cardinal_input.x,

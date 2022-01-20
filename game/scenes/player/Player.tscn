@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=2]
@@ -34,6 +34,13 @@ __meta__ = {
 }
 name = "Move"
 
+[sub_resource type="Resource" id=42]
+script = ExtResource( 3 )
+__meta__ = {
+"graph_offset": Vector2( 539, 120 )
+}
+name = "Cutscene"
+
 [sub_resource type="Resource" id=31]
 script = ExtResource( 8 )
 name = "charge_end"
@@ -44,6 +51,19 @@ from = "Charge"
 to = "Move"
 conditions = {
 "charge_end": SubResource( 31 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=47]
+script = ExtResource( 8 )
+name = "cutscene_start"
+
+[sub_resource type="Resource" id=43]
+script = ExtResource( 5 )
+from = "Charge"
+to = "Cutscene"
+conditions = {
+"cutscene_start": SubResource( 47 )
 }
 priority = 0
 
@@ -68,23 +88,55 @@ conditions = {
 }
 priority = 0
 
+[sub_resource type="Resource" id=48]
+script = ExtResource( 8 )
+name = "cutscene_start"
+
+[sub_resource type="Resource" id=44]
+script = ExtResource( 5 )
+from = "Move"
+to = "Cutscene"
+conditions = {
+"cutscene_start": SubResource( 48 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=45]
+script = ExtResource( 8 )
+name = "cutscene_end"
+
+[sub_resource type="Resource" id=46]
+script = ExtResource( 5 )
+from = "Cutscene"
+to = "Move"
+conditions = {
+"cutscene_end": SubResource( 45 )
+}
+priority = 0
+
 [sub_resource type="Resource" id=33]
 script = ExtResource( 4 )
 name = ""
 states = {
 "Charge": SubResource( 27 ),
+"Cutscene": SubResource( 42 ),
 "Entry": SubResource( 25 ),
 "Move": SubResource( 26 )
 }
 transitions = {
 "Charge": {
+"Cutscene": SubResource( 43 ),
 "Move": SubResource( 32 )
+},
+"Cutscene": {
+"Move": SubResource( 46 )
 },
 "Entry": {
 "Move": SubResource( 28 )
 },
 "Move": {
-"Charge": SubResource( 30 )
+"Charge": SubResource( 30 ),
+"Cutscene": SubResource( 44 )
 }
 }
 
@@ -212,7 +264,7 @@ transitions = {
 }
 }
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 1 )
 

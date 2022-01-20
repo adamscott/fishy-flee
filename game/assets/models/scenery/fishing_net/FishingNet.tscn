@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/shaders/psx/psx_unlit_transparent.shader" type="Shader" id=1]
+[ext_resource path="res://assets/models/scenery/fishing_net/fishing_net.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/scenery/fishing_net/textures/net.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/models/scenery/fishing_net/FishingNet.gd" type="Script" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 1, 1, 1, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = true
+shader_param/min_draw_distance = 2.0
+shader_param/max_draw_distance = 40.0
+shader_param/albedoTex = ExtResource( 3 )
+
+[node name="FishingNet" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
+
+[node name="Cube" parent="." index="0"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+material/0 = SubResource( 1 )
+
+[node name="Shadow" parent="." index="1" instance=ExtResource( 4 )]
+transform = Transform( 12.6644, 0, 0, 0, -2.18557e-08, 0.5, 0, -12.6644, -5.53578e-07, 0.0259914, 0.176195, 11.1252 )
+
+[node name="Shadow2" parent="." index="2" instance=ExtResource( 4 )]
+transform = Transform( 6.79847, 1.45215, 6.34754e-08, 0, -2.18557e-08, 0.5, 3.89068, -2.53744, -1.10915e-07, -5.15744, 0.176195, 4.93029 )
+
+[node name="Shadow3" parent="." index="3" instance=ExtResource( 4 )]
+transform = Transform( 7.03645, -1.28455, -5.61494e-08, 0, -2.18557e-08, 0.5, -3.44164, -2.62627, -1.14798e-07, 4.5753, 0.176195, 4.93029 )

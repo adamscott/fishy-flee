@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=6]
 [ext_resource path="res://assets/models/scenery/sand/dune/Dune.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/levels/prototype/set_pieces/push_wall/PushWall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/levels/prototype/set_pieces/arch/Arch.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/models/scenery/fishing_net/FishingNet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/models/fish/salmon/Salmon.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -39,14 +42,397 @@ shader_param/draw_distance_enabled = false
 shader_param/min_draw_distance = 2.0
 shader_param/max_draw_distance = 40.0
 
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Start/NetApproaching/FishingNet:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.74638, 0.0499995, 34.0645 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Start/NetApproaching/Camera:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Start/NetApproaching/Camera:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 11.1098, -0.837496, 24.4188 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Player:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.95586, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Player:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Player:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Start/ReactionShot/Camera:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Start/ReactionShot/Camera:translation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.175016, 1.21685, -43.0569 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Start/ReactionShot/Salmon:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "net_approaching"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Start/NetApproaching/FishingNet:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.74638, 0.0499995, 34.0645 ), Vector3( 1.74638, 0.0499995, 20.4219 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Start/NetApproaching/Camera:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Start/NetApproaching/Camera:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 8.98855, 0.928803, 31.3211 ), Vector3( 11.1098, 3.38769, 12.9862 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "reaction_shot"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Player:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Start/ReactionShot/Camera:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Start/ReactionShot/Camera:translation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.175016, 1.21685, -43.0569 ), Vector3( -0.175016, 1.21685, -43.2694 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Start/ReactionShot/Salmon:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 10.3887, 8.46104, 1 )
+
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 4.68288, 0.0408609, 3.581 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CameraRail:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Part1/Part1CutsceneArea/Part1CutsceneCollisionShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:in_cutscene")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "cutscene_net_approaching"
+length = 9.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Cutscenes/Start/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "net_approaching", "reaction_shot" ),
+"times": PoolRealArray( 0, 6 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraRail:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Part1/Part1CutsceneArea/Part1CutsceneCollisionShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:in_cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="PrototypeLevel" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
+
+[node name="Cutscenes" type="Spatial" parent="."]
+
+[node name="Start" type="Spatial" parent="Cutscenes"]
+
+[node name="NetApproaching" type="Spatial" parent="Cutscenes/Start"]
+
+[node name="FishingNet" parent="Cutscenes/Start/NetApproaching" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74638, 0.0499995, 34.0645 )
+
+[node name="Scenery" type="Spatial" parent="Cutscenes/Start/NetApproaching"]
+transform = Transform( 1, -5.19904e-05, -5.34699e-05, 5.19904e-05, 1, 9.67689e-05, 5.34699e-05, -9.67689e-05, 1, 0, 0, 0 )
+
+[node name="Algae" parent="Cutscenes/Start/NetApproaching/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 1, -5.29354e-13, 0, -1.16485e-12, 1, 0, 0, 0, 1, -1.34501, 0.0480054, 21.3386 )
+
+[node name="Algae2" parent="Cutscenes/Start/NetApproaching/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 1, -5.29354e-13, 0, -1.16485e-12, 1, 0, 0, 0, 1, 5.98522, 0.0482492, 14.8793 )
+
+[node name="Algae3" parent="Cutscenes/Start/NetApproaching/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.709423, 8.33078e-05, -0.704783, -5.30939e-05, 1, 6.47607e-05, 0.704783, -8.52758e-06, 0.709423, 11.1324, 0.0457238, 38.2107 )
+
+[node name="Algae4" parent="Cutscenes/Start/NetApproaching/Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.777541, 0.000153274, -0.628832, 3.15637e-05, 1, 0.000204704, 0.628832, 0.000139309, -0.777541, 10.2034, 0.0449596, 46.6072 )
+
+[node name="Rock" parent="Cutscenes/Start/NetApproaching/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.907169, -5.29354e-13, 0.420767, 0, 1, -1.45519e-11, -0.420767, 0, 0.907169, -2.60038, 0.371493, 20.0851 )
+
+[node name="Shadow2" parent="Cutscenes/Start/NetApproaching/Scenery/Rock" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock2" parent="Cutscenes/Start/NetApproaching/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.907169, -5.29354e-13, 0.420767, 0, 1, -2.18279e-11, -0.420767, 0, 0.907169, 11.6573, 0.769071, 44.571 )
+
+[node name="Shadow2" parent="Cutscenes/Start/NetApproaching/Scenery/Rock2" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44973e-08, -2.36469e-11, -1.15688e-07, 1, 0.748977, -2.49686, -4.12401e-08, 0.0690193, -0.664143, -0.259686 )
+
+[node name="CSGBox" type="CSGBox" parent="Cutscenes/Start/NetApproaching/Scenery"]
+transform = Transform( 1, -5.29354e-13, 0, -1.16485e-12, 1, 0, 0, 0, 1, 0.00253494, -0.00458826, 47.4132 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 30.3502
+height = 0.1
+depth = 50.0
+
+[node name="Camera" type="Camera" parent="Cutscenes/Start/NetApproaching"]
+transform = Transform( -0.816077, 0, 0.577943, 0, 1, 0, -0.577943, 0, -0.816077, 11.1098, -0.837496, 24.4188 )
+
+[node name="ReactionShot" type="Spatial" parent="Cutscenes/Start"]
+
+[node name="Salmon" parent="Cutscenes/Start/ReactionShot" instance=ExtResource( 13 )]
+transform = Transform( 0.77168, 0, -0.636011, 0, 1, 0, 0.636011, 0, 0.77168, 0, 1.11988, -43.6414 )
+visible = false
+
+[node name="Camera" type="Camera" parent="Cutscenes/Start/ReactionShot"]
+transform = Transform( 0.996567, -0.000427174, 0.0827913, 0, 0.999987, 0.00515958, -0.0827924, -0.00514186, 0.996554, -0.175016, 1.21685, -43.0569 )
+current = true
+near = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscenes/Start"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 6 )
+anims/net_approaching = SubResource( 7 )
+anims/reaction_shot = SubResource( 10 )
 
 [node name="Part1" type="Spatial" parent="."]
 
@@ -60,12 +446,12 @@ height = 0.1
 depth = 50.0
 
 [node name="CSGBox2" type="CSGBox" parent="Part1/Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.6016 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267696, 0, -48.3847 )
 material_override = SubResource( 3 )
 use_collision = true
 width = 20.0
 height = 0.1
-depth = 35.6668
+depth = 50.4237
 
 [node name="CSGBox3" type="CSGBox" parent="Part1/Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -97 )
@@ -103,6 +489,24 @@ transform = Transform( 0.515891, 0, 0.856655, 0, 1, 0, -0.856655, 0, 0.515891, -
 [node name="Algae4" parent="Part1/Scenery" instance=ExtResource( 4 )]
 transform = Transform( -0.880643, 0, 0.473781, 0, 1, 0, -0.473781, 0, -0.880643, 5.78271, 2.38419e-07, -37.0909 )
 
+[node name="Algae12" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.00303689, 0, 0.999996, 0, 1, 0, -0.999996, 0, 0.00303689, 4.97086, 2.38419e-07, -62.7966 )
+
+[node name="Algae16" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.99171, 0, 0.128501, 0, 1, 0, -0.128501, 0, 0.99171, -4.5393, 2.38419e-07, -46.2144 )
+
+[node name="Algae17" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.286424, 0, 0.958103, 0, 1, 0, -0.958103, 0, 0.286424, -4.30622, 2.38419e-07, -46.9391 )
+
+[node name="Algae13" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.790476, 0, 0.612493, 0, 1, 0, -0.612493, 0, -0.790476, 4.16705, 2.38419e-07, -64.0287 )
+
+[node name="Algae14" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.745732, 0, 0.666246, 0, 1, 0, -0.666246, 0, 0.745732, 5.80946, 2.38419e-07, -63.3576 )
+
+[node name="Algae15" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.370282, 0, 0.92892, 0, 1, 0, -0.92892, 0, -0.370282, -4.89474, 2.38419e-07, -67.0626 )
+
 [node name="Algae5" parent="Part1/Scenery" instance=ExtResource( 4 )]
 transform = Transform( 0.587022, 0, -0.809571, 0, 1, 0, 0.809571, 0, 0.587022, 5.46521, 2.38419e-07, -28.0316 )
 
@@ -123,6 +527,24 @@ transform = Transform( 0.18474, 0, -0.982787, 0, 1, 0, 0.982787, 0, 0.18474, 6.6
 transform = Transform( 0.907169, 0, 0.420767, 0, 1, 0, -0.420767, 0, 0.907169, -2.60224, 0.374854, -14.651 )
 
 [node name="Shadow2" parent="Part1/Scenery/Rock" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock3" parent="Part1/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.907169, 0, 0.420767, 0, 1, 0, -0.420767, 0, 0.907169, -5.86747, 0.374854, -60.9662 )
+
+[node name="Shadow2" parent="Part1/Scenery/Rock3" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock4" parent="Part1/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.52875, 0, -0.848778, 0, 1, 0, 0.848778, 0, 0.52875, -4.5722, 0.374854, -61.8511 )
+
+[node name="Shadow2" parent="Part1/Scenery/Rock4" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock5" parent="Part1/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.52875, 0, -0.848778, 0, 1, 0, 0.848778, 0, 0.52875, 7.38975, 0.374854, -49.9839 )
+
+[node name="Shadow2" parent="Part1/Scenery/Rock5" instance=ExtResource( 8 )]
 transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
 
 [node name="Rock2" parent="Part1/Scenery" instance=ExtResource( 5 )]
@@ -149,10 +571,26 @@ transform = Transform( 2.63148, 0, -2.96713, 0, 1, 0, 3.49158, 0, 2.23622, -11.8
 [node name="Dune6" parent="Part1/Scenery" instance=ExtResource( 7 )]
 transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, 16.0229, 0.0963001, -35.539 )
 
+[node name="Dune7" parent="Part1/Scenery" instance=ExtResource( 7 )]
+transform = Transform( 2.01617, 0, -2.27334, 0, 1, 0, 2.67516, 0, 1.71333, -5.52281, 0.0963001, -56.14 )
+
+[node name="ShippingBox" parent="Part1/Scenery" instance=ExtResource( 9 )]
+transform = Transform( 0.977327, 0, 0.211734, 0, 1, 0, -0.211734, 0, 0.977327, -0.192884, 1.52778, -35.463 )
+
+[node name="Shadow" parent="Part1/Scenery/ShippingBox" instance=ExtResource( 8 )]
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.4473, 0 )
+
 [node name="SetPieces" type="Spatial" parent="Part1"]
 
 [node name="PushWallSetPiece" parent="Part1/SetPieces" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, -69.2218 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, -95.2577 )
+
+[node name="Part1CutsceneArea" type="Area" parent="Part1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -41.5989 )
+collision_mask = 2
+
+[node name="Part1CutsceneCollisionShape" type="CollisionShape" parent="Part1/Part1CutsceneArea"]
+shape = SubResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95586, 0 )
@@ -186,3 +624,9 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="CameraRail/Left"]
 shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/cutscene_net_approaching = SubResource( 9 )
+
+[connection signal="body_entered" from="Part1/Part1CutsceneArea" to="." method="_on_Part1CutsceneArea_body_entered"]

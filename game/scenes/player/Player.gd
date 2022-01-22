@@ -5,7 +5,8 @@ const YAFSM: = preload("res://addons/imjp94.yafsm/YAFSM.gd")
 const StateMachinePlayer: = YAFSM.StateMachinePlayer
 
 export (Vector3) var up_direction: = Vector3.UP
-export (float) var speed: = 19.0
+export (float) var speed: = 20.0
+export (float) var rush_speed: = 22.0
 export (float) var min_velocity_horizontal: = 0.3
 export (float) var min_velocity_vertical: = 0.1
 export (float) var max_velocity_horizontal: = 2.5
@@ -13,7 +14,6 @@ export (float) var max_velocity_vertical: = 1.0
 export (float) var friction_horizontal: = 0.8
 export (float) var friction_vertical: = 1.0
 export (float) var rotation_speed_factor: = PI * 2.0
-export (float) var rush_velocity: = 10.0
 export (bool) var in_cutscene: = false setget set_in_cutscene
 
 var velocity: = Vector3.ZERO
@@ -22,6 +22,9 @@ var acceleration: = Vector3.ZERO
 var input_direction: = Vector3.ZERO
 var move_direction: = Vector3.ZERO
 
+var is_charging: = false setget , get_is_charging
+
+onready var particles: Particles = $Particles
 onready var skin: Spatial = $Skin
 
 onready var main_sm: StateMachinePlayer = $StateMachines/MainStateMachine as StateMachinePlayer
@@ -34,6 +37,10 @@ onready var shadow_sprite3D: Sprite3D = $RayCastsContainer/RayCasts/ShadowRayCas
 onready var salmon_at: AnimationTree = $Skin/Salmon/AnimationTree as AnimationTree
 
 onready var charge_rush_timer: Timer = $Timers/ChargeRushTimer as Timer
+
+
+func get_is_charging() -> bool:
+	return not $Timers/ChargeBufferTimer.is_stopped()
 
 
 func set_in_cutscene(val: bool) -> void:
@@ -70,9 +77,9 @@ func _on_MoveStateMachine_transited(from, to) -> void:
 
 
 func _on_ChargeStateMachine_transited(from, to) -> void:
-	prints(to)
 	match to:
 		"Charging":
+			$Timers/ChargeBufferTimer.stop()
 			salmon_at["parameters/active/charge_oneshot/active"] = true
 		"Rush":
 			apply_charge_rush()
@@ -84,6 +91,17 @@ func _on_Salmon_charging_animation_end() -> void:
 
 func _on_ChargeRushTimer_timeout() -> void:
 	main_sm.set_trigger("charge_end")
+
+
+func _on_BreakArea_body_entered(body: Node) -> void:
+	match get_state():
+		{ "main": "Charge", "charge": "Rush", .. }:
+			pass
+		_:
+			return
+	
+	if body.is_in_group("breakable"):
+		body.call("break_self")
 
 
 func _ready() -> void:
@@ -98,6 +116,7 @@ func _process(delta: float) -> void:
 	
 	process_input(delta)
 	process_animation(delta)
+	process_particles(delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -123,6 +142,10 @@ func process_input(delta: float) -> void:
 func process_animation(delta: float) -> void:
 	var ratio_horizontal: = velocity.length() / max_velocity_horizontal
 	salmon_at["parameters/active/velocity/blend_position"] = ratio_horizontal
+
+
+func process_particles(delta: float) -> void:
+	particles.emitting = velocity.length_squared() > 1
 
 
 func process_shadow(delta: float) -> void:
@@ -156,6 +179,7 @@ func process_physics_before_gravity(delta: float) -> void:
 	apply_friction(delta)
 	apply_rotation_redirection(delta)
 	apply_charging(delta)
+	apply_rush(delta)
 
 
 func process_physics_gravity(delta: float) -> void:
@@ -273,6 +297,16 @@ func apply_charging(delta: float) -> void:
 	)
 
 
+func apply_rush(delta: float) -> void:
+	match get_state():
+		{ "main": "Charge", "charge": "Rush", .. }:
+			pass
+		_:
+			return
+	
+	acceleration += -global_transform.basis.z * rush_speed * delta
+
+
 func update_camera(delta: float) -> void:
 	match get_state():
 		{ "main": "Cutscene", .. }:
@@ -308,10 +342,12 @@ func update_camera(delta: float) -> void:
 
 func update_charge(delta: float) -> void:
 	if Input.is_action_just_pressed("charge"):
-		main_sm.set_trigger("charge")
+		$Timers/ChargeBufferTimer.start()
+	
+	main_sm.set_param("charge_pressed", get_is_charging())
 
 
 func apply_charge_rush() -> void:
-	acceleration += global_transform.basis.z * rush_velocity
+	# acceleration += global_transform.basis.z * rush_velocity
 	salmon_at["parameters/active/velocity_timescale/scale"] = 2.0
 	charge_rush_timer.start()

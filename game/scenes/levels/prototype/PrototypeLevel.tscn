@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -20,6 +20,9 @@
 [ext_resource path="res://assets/songs/ocean_overdrive/ocean_overdrive_Bass.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/songs/ocean_overdrive/ocean_overdrive_Synth.wav" type="AudioStream" id=19]
 [ext_resource path="res://addons/mixing-desk/music/containers/autofade_cont.gd" type="Script" id=20]
+[ext_resource path="res://scenes/levels/prototype/set_pieces/algae_moguls/AlgaeMoguls.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/scenery/box/Box.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/levels/prototype/set_pieces/algae_moguls_2/AlgaeMoguls2.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -473,20 +476,12 @@ height = 0.1
 depth = 50.4237
 
 [node name="CSGBox3" type="CSGBox" parent="Part1/Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -97 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -77.9359 )
 material_override = SubResource( 3 )
 use_collision = true
 width = 20.0
 height = 0.1
-depth = 50.0
-
-[node name="CSGBox4" type="CSGBox" parent="Part1/Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -145 )
-material_override = SubResource( 3 )
-use_collision = true
-width = 20.0
-height = 0.1
-depth = 50.0
+depth = 13.2634
 
 [node name="Scenery" type="Spatial" parent="Part1"]
 
@@ -525,6 +520,24 @@ transform = Transform( 0.745732, 0, 0.666246, 0, 1, 0, -0.666246, 0, 0.745732, 5
 
 [node name="Algae15" parent="Part1/Scenery" instance=ExtResource( 4 )]
 transform = Transform( -0.370282, 0, 0.92892, 0, 1, 0, -0.92892, 0, -0.370282, -6.49028, 2.38419e-07, -67.0626 )
+
+[node name="Algae18" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.370282, 0, 0.92892, 0, 1, 0, -0.92892, 0, -0.370282, -4.73537, 2.38419e-07, -97.1824 )
+
+[node name="Algae19" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.946114, 0, 0.323835, 0, 1, 0, -0.323835, 0, 0.946114, -5.30718, 2.38419e-07, -96.6478 )
+
+[node name="Algae20" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.946114, 0, 0.323835, 0, 1, 0, -0.323835, 0, 0.946114, 6.49723, 2.38419e-07, -83.8885 )
+
+[node name="Algae21" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, 6.49723, 2.38419e-07, -99.7387 )
+
+[node name="Algae22" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.90725, 0, -0.420593, 0, 1, 0, 0.420593, 0, -0.90725, 7.51922, 2.38419e-07, -100.153 )
+
+[node name="Algae23" parent="Part1/Scenery" instance=ExtResource( 4 )]
+transform = Transform( -0.358254, 0, -0.933625, 0, 1, 0, 0.933625, 0, -0.358254, 8.70086, 2.38419e-07, -99.5309 )
 
 [node name="Algae5" parent="Part1/Scenery" instance=ExtResource( 4 )]
 transform = Transform( 0.587022, 0, -0.809571, 0, 1, 0, 0.809571, 0, 0.587022, 5.46521, 2.38419e-07, -28.0316 )
@@ -583,6 +596,12 @@ transform = Transform( 0.22224, 0, -2.84041, 0, 1, 0, 3.34246, 0, 0.188859, -4.5
 
 [node name="Dune4" parent="Part1/Scenery" instance=ExtResource( 7 )]
 transform = Transform( 6.38183, 0, -0.852362, 0, 1, 0, 1.00302, 0, 5.42325, 3.23583, 0.0963011, -44.2033 )
+
+[node name="Dune8" parent="Part1/Scenery" instance=ExtResource( 7 )]
+transform = Transform( -0.386281, 0, 5.48, 0, 1, 0, -6.44861, 0, -0.32826, -6.41596, 0.0963011, -87.4877 )
+
+[node name="Dune9" parent="Part1/Scenery" instance=ExtResource( 7 )]
+transform = Transform( -6.07088, 0, 1.87691, 0, 1, 0, -2.20866, 0, -5.15901, 5.54873, 0.0963011, -77.3836 )
 
 [node name="Dune5" parent="Part1/Scenery" instance=ExtResource( 7 )]
 transform = Transform( 2.63148, 0, -2.96713, 0, 1, 0, 3.49158, 0, 2.23622, -11.8852, 0.0963001, -40.2212 )
@@ -656,6 +675,143 @@ collision_mask = 2
 [node name="Part1CutsceneCollisionShape" type="CollisionShape" parent="Part1/Part1CutsceneArea"]
 shape = SubResource( 5 )
 
+[node name="Part2" type="Spatial" parent="."]
+
+[node name="Ground" type="Spatial" parent="Part2"]
+
+[node name="CSGBox4" type="CSGBox" parent="Part2/Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -156.306 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
+
+[node name="Scenery" type="Spatial" parent="Part2"]
+
+[node name="Box" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.7727, 0, 0.634771, 0, 1, 0, -0.634771, 0, 0.7727, -3.51397, 0.715441, -138.298 )
+
+[node name="Shadow" parent="Part2/Scenery/Box" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box2" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.427942, 0, -0.903806, 0, 1, 0, 0.903806, 0, 0.427942, 1.79654, 0.522018, -133.99 )
+
+[node name="Shadow" parent="Part2/Scenery/Box2" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box3" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.586104, 0, -0.810236, 0, 1, 0, 0.810236, 0, -0.586104, 3.6075, 0.522018, -134.224 )
+
+[node name="Shadow" parent="Part2/Scenery/Box3" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box4" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.988964, 0, 0.148155, 0, 1, 0, -0.148155, 0, -0.988964, 2.28194, 0.522018, -136.082 )
+
+[node name="Shadow" parent="Part2/Scenery/Box4" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box5" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.988964, 0, 0.148155, 0, 1, 0, -0.148155, 0, -0.988964, -2.43626, 0.552034, -145.704 )
+
+[node name="Shadow" parent="Part2/Scenery/Box5" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box6" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.919506, 0, -0.393075, 0, 1, 0, 0.393075, 0, -0.919506, -1.30509, 0.552034, -145.757 )
+
+[node name="Shadow" parent="Part2/Scenery/Box6" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box7" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.108173, 0, 0.994132, 0, 1, 0, -0.994132, 0, -0.108173, -0.174591, 0.552034, -145.954 )
+
+[node name="Shadow" parent="Part2/Scenery/Box7" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box11" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.108173, 0, 0.994132, 0, 1, 0, -0.994132, 0, -0.108173, -0.174591, 0.552034, -145.954 )
+
+[node name="Shadow" parent="Part2/Scenery/Box11" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box8" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.161122, 0, -0.986935, 0, 1, 0, 0.986935, 0, -0.161122, 0.96582, 0.552034, -145.814 )
+
+[node name="Shadow" parent="Part2/Scenery/Box8" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box10" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.997826, 0, -0.0659082, 0, 1, 0, 0.0659082, 0, 0.997826, 0.96582, 1.55203, -145.814 )
+breakable = true
+
+[node name="Shadow" parent="Part2/Scenery/Box10" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box12" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.964507, 0, 0.264058, 0, 1, 0, -0.264058, 0, 0.964507, -0.154308, 1.55203, -145.889 )
+
+[node name="Shadow" parent="Part2/Scenery/Box12" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box13" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.0235249, 0, -0.999723, 0, 1, 0, 0.999723, 0, 0.0235249, -1.28477, 1.55203, -145.705 )
+
+[node name="Shadow" parent="Part2/Scenery/Box13" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box14" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.367005, 0, -0.930219, 0, 1, 0, 0.930219, 0, -0.367005, -1.22839, 2.55203, -145.464 )
+
+[node name="Shadow" parent="Part2/Scenery/Box14" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box15" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.106281, 0, -0.994336, 0, 1, 0, 0.994336, 0, 0.106281, -0.0952387, 2.55203, -145.658 )
+
+[node name="Shadow" parent="Part2/Scenery/Box15" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box16" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.28726, 0, -0.957853, 0, 1, 0, 0.957853, 0, -0.28726, 1.09141, 2.55203, -145.644 )
+
+[node name="Shadow" parent="Part2/Scenery/Box16" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box17" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( -0.28726, 0, -0.957853, 0, 1, 0, 0.957853, 0, -0.28726, 2.09141, 1.55203, -145.644 )
+
+[node name="Shadow" parent="Part2/Scenery/Box17" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box9" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.108225, 0, 0.994126, 0, 1, 0, -0.994126, 0, 0.108225, 2.01494, 0.552034, -145.665 )
+
+[node name="Shadow" parent="Part2/Scenery/Box9" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Dune9" parent="Part2/Scenery" instance=ExtResource( 7 )]
+transform = Transform( -5.98803, 0, 2.06017, 0, 1, 0, -2.42431, 0, -5.0886, -4.69594, 0.0963011, -139.117 )
+
+[node name="ShippingBox5" parent="Part2/Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.831838, 0, 0.555018, 0, 1, 0, -0.555018, 0, 0.831838, 3.02492, 1.27659, -135.13 )
+
+[node name="Shadow" parent="Part2/Scenery/ShippingBox5" instance=ExtResource( 8 )]
+transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.53644, -2.18557e-08, 0, -1.19611, 0 )
+
+[node name="Rock" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.382474, -0.831888, 0.40209, 0.860751, 0.478998, 0.172245, -0.335889, 0.28022, 0.899253, -2.14677, 1.89996, -145.763 )
+
+[node name="SetPieces" type="Spatial" parent="Part2"]
+
+[node name="AlgaeMoguls" parent="Part2/SetPieces" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -105.457 )
+
+[node name="AlgaeMoguls2" parent="Part2/SetPieces" instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.244 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95586, 0 )
 
@@ -689,10 +845,6 @@ collision_mask = 2
 [node name="CollisionShape" type="CollisionShape" parent="CameraRail/Left"]
 shape = SubResource( 4 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 8 )
-anims/cutscene_net_approaching = SubResource( 9 )
-
 [node name="MixingDeskMusic" type="Node" parent="."]
 script = ExtResource( 15 )
 play_mode = 1
@@ -721,5 +873,9 @@ track_speed = 1.0
 
 [node name="OceanOverdriveBass" type="AudioStreamPlayer" parent="MixingDeskMusic/OceanOverdriveSong/AutoFadeContainer"]
 stream = ExtResource( 18 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/cutscene_net_approaching = SubResource( 9 )
 
 [connection signal="body_entered" from="Part1/Part1CutsceneArea" to="." method="_on_Part1CutsceneArea_body_entered"]

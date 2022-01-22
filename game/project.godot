@@ -74,7 +74,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot Wild Jam #41"
+config/name="Fishy Flee"
 run/main_scene="res://scenes/levels/prototype/PrototypeLevel.tscn"
 config/icon="res://icon.png"
 

@@ -22,7 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("skip_cutscene"):
 		if animation_player.is_playing() and animation_player.current_animation == "cutscene_net_approaching":
-			animation_player.seek(animation_player.current_animation_length - 0.1)
+			animation_player.seek(animation_player.current_animation_length - 0.01)
 
 
 func _physics_process(delta: float) -> void:

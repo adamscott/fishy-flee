@@ -1,0 +1,286 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=1]
+[ext_resource path="res://scenes/scenery/algae_wall/AlgaeWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/scenery/shipping_box/ShippingBox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = false
+shader_param/min_draw_distance = 2.0
+shader_param/max_draw_distance = 40.0
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShippingBox:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -2.43557, 1.23715, -15.8009 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShippingBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShippingBox2:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 2.9135, 1.23715, -15.8009 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShippingBox2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "box_swing"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShippingBox:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.43557, 7.01597, -15.8009 ), Vector3( -2.43557, 1.23715, -15.8009 ), Vector3( -2.43557, 1.23715, -8.22495 ), Vector3( -2.43557, 5.35013, -8.22495 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShippingBox:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShippingBox2:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 5, 6, 9, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.9135, 11.1951, -15.8009 ), Vector3( 2.9135, 1.23715, -15.8009 ), Vector3( 2.9135, 1.23715, -7.77725 ), Vector3( 2.9135, 7.52975, -7.77725 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShippingBox2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="AlgaeMoguls2" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.4443 )
+material_override = SubResource( 1 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 28.7861
+
+[node name="AlgaeWalls" type="Spatial" parent="."]
+
+[node name="AlgaeWall" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.38022, 0.0377083, -4.93311 )
+
+[node name="AlgaeWall2" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.29017, 0.0377083, -2.28261 )
+
+[node name="AlgaeWall3" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.36627, 0.0377083, -0.518948 )
+
+[node name="AlgaeWall4" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.23049, 0.0377083, -8.02015 )
+
+[node name="AlgaeWall40" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.532166, 0.0377083, -8.02015 )
+
+[node name="AlgaeWall5" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.29449, 0.0377083, -8.02015 )
+
+[node name="AlgaeWall6" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.90161, 0.0377083, -8.02015 )
+
+[node name="AlgaeWall7" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.72284, 0.0377083, -8.02015 )
+
+[node name="AlgaeWall8" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.86885, 0.0377083, -9.25624 )
+
+[node name="AlgaeWall9" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.10971, 0.0377083, -9.25624 )
+
+[node name="AlgaeWall41" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.10782, 0.0377083, -9.25624 )
+
+[node name="AlgaeWall42" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.16968, 0.0377083, -9.25624 )
+
+[node name="AlgaeWall10" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.59588, 0.0377083, -9.25624 )
+
+[node name="AlgaeWall11" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.18056, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall43" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.634997, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall44" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.30312, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall12" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.50597, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall45" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.63566, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall13" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.14165, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall14" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.20897, 0.0377083, -10.3848 )
+
+[node name="AlgaeWall15" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.53705, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall16" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.56536, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall17" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.38616, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall18" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.804515, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall19" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.734685, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall20" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.97123, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall21" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.79888, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall22" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.40613, 0.0377083, -11.2071 )
+
+[node name="AlgaeWall23" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.40613, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall24" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.35947, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall25" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.55279, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall26" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.89073, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall27" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.09033, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall28" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.584577, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall29" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.08169, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall30" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.78325, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall31" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.69967, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall32" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.69967, 0.0377083, -12.1448 )
+
+[node name="AlgaeWall33" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.85262, 0.0377083, -15.2602 )
+
+[node name="AlgaeWall34" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.33079, 0.0377083, -17.1414 )
+
+[node name="AlgaeWall35" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.51601, 0.0377083, -13.8282 )
+
+[node name="AlgaeWall36" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.36164, 0.0377083, -20.3355 )
+
+[node name="AlgaeWall37" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50943, 0.0377083, -22.3365 )
+
+[node name="AlgaeWall38" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.16891, 0.0377083, -8.02015 )
+
+[node name="AlgaeWall39" parent="AlgaeWalls" instance=ExtResource( 2 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2.37157, 0.0754166, -7.93957 )
+
+[node name="ShippingBox" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1.91053, 0, 0, 0, 2.39875, 0, 0, 0, 2.00082, -2.43557, 1.23715, -15.8009 )
+
+[node name="ShippingBox2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1.91053, 0, 0, 0, 2.39875, 0, 0, 0, 2.00082, 2.9135, 1.23715, -15.8009 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "box_swing"
+anims/RESET = SubResource( 2 )
+anims/box_swing = SubResource( 3 )

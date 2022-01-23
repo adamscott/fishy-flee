@@ -10,6 +10,20 @@
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/ExpressionCondition.gd" type="Script" id=8]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=9]
 
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 394, 100 )
+}
+name = "AdamScott"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 828, 100 )
+}
+name = "End"
+
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 __meta__ = {
@@ -31,19 +45,18 @@ __meta__ = {
 }
 name = "Gwj"
 
-[sub_resource type="Resource" id=4]
-script = ExtResource( 5 )
-__meta__ = {
-"graph_offset": Vector2( 394, 100 )
-}
-name = "AdamScott"
+[sub_resource type="Resource" id=13]
+script = ExtResource( 8 )
+name = "t(\"skip_cutscene\") or t(\"cutscene_end\")"
 
-[sub_resource type="Resource" id=5]
-script = ExtResource( 5 )
-__meta__ = {
-"graph_offset": Vector2( 828, 100 )
+[sub_resource type="Resource" id=10]
+script = ExtResource( 7 )
+from = "AdamScott"
+to = "End"
+conditions = {
+"t(\"skip_cutscene\") or t(\"cutscene_end\")": SubResource( 13 )
 }
-name = "End"
+priority = 0
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 7 )
@@ -76,19 +89,6 @@ from = "Gwj"
 to = "AdamScott"
 conditions = {
 "t(\"skip_cutscene\") or t(\"cutscene_end\")": SubResource( 12 )
-}
-priority = 0
-
-[sub_resource type="Resource" id=13]
-script = ExtResource( 8 )
-name = "t(\"skip_cutscene\") or t(\"cutscene_end\")"
-
-[sub_resource type="Resource" id=10]
-script = ExtResource( 7 )
-from = "AdamScott"
-to = "End"
-conditions = {
-"t(\"skip_cutscene\") or t(\"cutscene_end\")": SubResource( 13 )
 }
 priority = 0
 

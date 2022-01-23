@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/intro/gwj/GWJ-Full-Logo-noBG.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/oswald/Oswald-Bold.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/intro/gwj/GWJ-41-Theme Ocean.png" type="Texture" id=4]
 [ext_resource path="res://assets/intro/gwj/fishy.png" type="Texture" id=5]
 [ext_resource path="res://assets/intro/gwj/treeson.png" type="Texture" id=6]
+[ext_resource path="res://assets/sounds/whip/whip.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/exit/exit.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/swing/swing.wav" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -292,6 +295,28 @@ tracks/12/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 2.7, 2.8 )
 }
+tracks/13/type = "audio"
+tracks/13/path = NodePath("AudioStreamPlayer")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0, 0.9, 2.4 )
+}
 
 [node name="Gwj" type="Control"]
 anchor_right = 1.0
@@ -358,6 +383,8 @@ modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 0, 120 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )

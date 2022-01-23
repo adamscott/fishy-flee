@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/menus/main_menu/menu/Menu.gd" type="Script" id=1]
+
+[node name="VBoxContainer" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 472.0
+margin_top = 257.0
+margin_right = 552.0
+margin_bottom = 343.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+margin_right = 80.0
+margin_bottom = 14.0
+text = "Hello, World"
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 80.0
+margin_bottom = 38.0
+focus_neighbour_bottom = NodePath("../Options")
+focus_next = NodePath("../Options")
+text = "Start"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 80.0
+margin_bottom = 62.0
+focus_neighbour_top = NodePath("../Start")
+focus_neighbour_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Start")
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 66.0
+margin_right = 80.0
+margin_bottom = 86.0
+focus_neighbour_top = NodePath("../Options")
+focus_previous = NodePath("../Options")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

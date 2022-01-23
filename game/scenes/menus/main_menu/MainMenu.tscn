@@ -1,0 +1,420 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://scenes/menus/main_menu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://scenes/menus/main_menu/menu/Menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/menus/main_menu/options/Options.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/shaders/psx/psx_unlit.shader" type="Shader" id=4]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=5]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=7]
+[ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=8]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=9]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_mode = 1
+background_sky = SubResource( 1 )
+background_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+ambient_light_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = false
+shader_param/min_draw_distance = 2.0
+shader_param/max_draw_distance = 40.0
+
+[sub_resource type="Animation" id=20]
+resource_name = "Entry->Menu"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Menu->Options"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Options:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Options->Menu"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Options:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Options:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 348, -20 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 548, -20 )
+}
+name = "Menu"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 723.5, -20 )
+}
+name = "Options"
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 548, 80 )
+}
+name = "Quit"
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 548, -120 )
+}
+name = "Start"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 7 )
+from = "Entry"
+to = "Menu"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 9 )
+name = "options"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 7 )
+from = "Menu"
+to = "Options"
+conditions = {
+"options": SubResource( 11 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 9 )
+name = "quit"
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 7 )
+from = "Menu"
+to = "Quit"
+conditions = {
+"quit": SubResource( 14 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 9 )
+name = "start"
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 7 )
+from = "Menu"
+to = "Start"
+conditions = {
+"start": SubResource( 17 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 9 )
+name = "back"
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 7 )
+from = "Options"
+to = "Menu"
+conditions = {
+"back": SubResource( 12 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 6 )
+name = ""
+states = {
+"Entry": SubResource( 4 ),
+"Menu": SubResource( 5 ),
+"Options": SubResource( 6 ),
+"Quit": SubResource( 13 ),
+"Start": SubResource( 16 )
+}
+transitions = {
+"Entry": {
+"Menu": SubResource( 7 )
+},
+"Menu": {
+"Options": SubResource( 8 ),
+"Quit": SubResource( 15 ),
+"Start": SubResource( 18 )
+},
+"Options": {
+"Menu": SubResource( 9 )
+}
+}
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="CenterContainer"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="CenterContainer/ViewportContainer"]
+size = Vector2( 100, 100 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CenterContainer/ViewportContainer/Viewport"]
+environment = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="CenterContainer/ViewportContainer/Viewport"]
+transform = Transform( 0.902615, 0, 0.430448, 0, 1, 0, -0.430448, 0, 0.902615, 4.39402, 2.5595, 3.77393 )
+current = true
+
+[node name="Scenery" type="Spatial" parent="CenterContainer/ViewportContainer/Viewport"]
+
+[node name="CSGBox4" type="CSGBox" parent="CenterContainer/ViewportContainer/Viewport/Scenery"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.778 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
+
+[node name="Menu" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="Options" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Entry->Menu"
+anims/Entry->Menu = SubResource( 20 )
+anims/Menu->Options = SubResource( 21 )
+anims/Options->Menu = SubResource( 22 )
+anims/RESET = SubResource( 19 )
+
+[node name="StateMachines" type="Node" parent="."]
+
+[node name="MainStateMachine" type="Node" parent="StateMachines"]
+script = ExtResource( 8 )
+state_machine = SubResource( 10 )
+
+[connection signal="resized" from="CenterContainer" to="." method="_on_CenterContainer_resized"]
+[connection signal="options" from="Menu" to="." method="_on_Menu_options"]
+[connection signal="quit" from="Menu" to="." method="_on_Menu_quit"]
+[connection signal="start" from="Menu" to="." method="_on_Menu_start"]
+[connection signal="transited" from="StateMachines/MainStateMachine" to="." method="_on_MainStateMachine_transited"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/box_break.wav-d0e00db3a01a82e10b3ce63bd23d4598.sample"
+
+[deps]
+
+source_file="res://assets/sounds/box_break/box_break.wav"
+dest_files=[ "res://.import/box_break.wav-d0e00db3a01a82e10b3ce63bd23d4598.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

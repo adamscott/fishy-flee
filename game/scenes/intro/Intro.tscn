@@ -1,0 +1,411 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://scenes/intro/Intro.gd" type="Script" id=1]
+[ext_resource path="res://scenes/intro/gwj/Gwj.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/intro/godot/Godot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/intro/adamscott/AdamScott.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=5]
+[ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=6]
+[ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=7]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/ExpressionCondition.gd" type="Script" id=8]
+[ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=9]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 128, -80 )
+}
+name = "Entry"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 328, -80 )
+}
+name = "Godot"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 648, -80 )
+}
+name = "Gwj"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 394, 100 )
+}
+name = "AdamScott"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+__meta__ = {
+"graph_offset": Vector2( 828, 100 )
+}
+name = "End"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 7 )
+from = "Entry"
+to = "Godot"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 8 )
+name = "t(\"skip_cutscene\") or t(\"cutscene_end\")"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 7 )
+from = "Godot"
+to = "Gwj"
+conditions = {
+"t(\"skip_cutscene\") or t(\"cutscene_end\")": SubResource( 7 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 8 )
+name = "t(\"skip_cutscene\") or t(\"cutscene_end\")"
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 7 )
+from = "Gwj"
+to = "AdamScott"
+conditions = {
+"t(\"skip_cutscene\") or t(\"cutscene_end\")": SubResource( 12 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 8 )
+name = "t(\"skip_cutscene\") or t(\"cutscene_end\")"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 7 )
+from = "AdamScott"
+to = "End"
+conditions = {
+"t(\"skip_cutscene\") or t(\"cutscene_end\")": SubResource( 13 )
+}
+priority = 0
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 6 )
+name = ""
+states = {
+"AdamScott": SubResource( 4 ),
+"End": SubResource( 5 ),
+"Entry": SubResource( 1 ),
+"Godot": SubResource( 2 ),
+"Gwj": SubResource( 3 )
+}
+transitions = {
+"AdamScott": {
+"End": SubResource( 10 )
+},
+"Entry": {
+"Godot": SubResource( 6 )
+},
+"Godot": {
+"Gwj": SubResource( 8 )
+},
+"Gwj": {
+"AdamScott": SubResource( 9 )
+}
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "AdamScott"
+length = 4.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("AdamScott/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "adamscott" ),
+"times": PoolRealArray( 1 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Godot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Gwj:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AdamScott:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("StateMachines/MainStateMachine")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cutscene_end" ],
+"method": "set_trigger"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0784314, 0.133333, 0.25098, 1 ), Color( 0.133333, 0.137255, 0.137255, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Godot"
+length = 3.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Godot/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "godot" ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Godot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Gwj:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AdamScott:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("StateMachines/MainStateMachine")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cutscene_end" ],
+"method": "set_trigger"
+} ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Gwj"
+length = 6.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Gwj/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "gwj" ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Godot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Gwj:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AdamScott:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("StateMachines/MainStateMachine")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cutscene_end" ],
+"method": "set_trigger"
+} ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Godot:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Gwj:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AdamScott:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0784314, 0.133333, 0.25098, 1 ) ]
+}
+
+[node name="Intro" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.133333, 0.25098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Godot" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Gwj" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="AdamScott" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="StateMachines" type="Node" parent="."]
+
+[node name="MainStateMachine" type="Node" parent="StateMachines"]
+script = ExtResource( 9 )
+state_machine = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AdamScott = SubResource( 17 )
+anims/Godot = SubResource( 14 )
+anims/Gwj = SubResource( 16 )
+anims/RESET = SubResource( 15 )
+
+[connection signal="transited" from="StateMachines/MainStateMachine" to="." method="_on_MainStateMachine_transited"]
+
+[editable path="Godot"]
+[editable path="Gwj"]
+[editable path="AdamScott"]

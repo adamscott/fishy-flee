@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -23,12 +23,13 @@
 [ext_resource path="res://scenes/levels/prototype/set_pieces/algae_moguls/AlgaeMoguls.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/scenery/box/Box.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/levels/prototype/set_pieces/algae_moguls_2/AlgaeMoguls2.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/sounds/ocean/ocean.wav" type="AudioStream" id=24]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="ProceduralSky" id=11]
 
 [sub_resource type="Environment" id=2]
 background_mode = 1
-background_sky = SubResource( 1 )
+background_sky = SubResource( 11 )
 background_color = Color( 0.941176, 0.964706, 0.941176, 1 )
 ambient_light_color = Color( 0.941176, 0.964706, 0.941176, 1 )
 fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
@@ -844,6 +845,10 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="CameraRail/Left"]
 shape = SubResource( 4 )
+
+[node name="OceanSFXStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+autoplay = true
 
 [node name="MixingDeskMusic" type="Node" parent="."]
 script = ExtResource( 15 )

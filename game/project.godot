@@ -75,8 +75,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Fishy Flee"
-run/main_scene="res://scenes/levels/prototype/PrototypeLevel.tscn"
+run/main_scene="res://main/Main.tscn"
+boot_splash/image="res://assets/sprites/transparent/transparent.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.133333, 0.137255, 0.137255, 1 )
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://autoload/global/Global.tscn"
 
 [editor_plugins]
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/models/scenery/box/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/scenery/box/Box.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/bubble/bubble.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/smoke/smoke.png" type="Texture" id=4]
+[ext_resource path="res://assets/sounds/box_break/box_break.wav" type="AudioStream" id=5]
 
 [sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 0.5
@@ -187,6 +188,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer3D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [node name="Box" type="KinematicBody"]
 script = ExtResource( 2 )
@@ -215,6 +230,9 @@ draw_pass_1 = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )

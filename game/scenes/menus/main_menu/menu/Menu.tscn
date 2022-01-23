@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/menus/main_menu/menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/lato/Lato-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/lato/Lato-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="VBoxContainer" type="CenterContainer"]
 anchor_right = 1.0
@@ -11,44 +23,77 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 472.0
-margin_top = 257.0
-margin_right = 552.0
-margin_bottom = 343.0
+margin_left = 240.0
+margin_top = 84.0
+margin_right = 784.0
+margin_bottom = 516.0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 80.0
-margin_bottom = 14.0
+margin_right = 544.0
+margin_bottom = 345.0
+custom_constants/margin_bottom = 200
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
-margin_right = 80.0
-margin_bottom = 14.0
-text = "Hello, World"
+margin_right = 544.0
+margin_bottom = 145.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Fishy Flee"
 
 [node name="Start" type="Button" parent="VBoxContainer"]
-margin_top = 18.0
-margin_right = 80.0
-margin_bottom = 38.0
+margin_top = 349.0
+margin_right = 544.0
+margin_bottom = 374.0
 focus_neighbour_bottom = NodePath("../Options")
 focus_next = NodePath("../Options")
+custom_colors/font_color_focus = Color( 0.780392, 0.12549, 0.12549, 1 )
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_colors/font_color_hover = Color( 0.92549, 0.301961, 0.301961, 1 )
+custom_colors/font_color_pressed = Color( 0.698039, 0.0705882, 0.0745098, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
 text = "Start"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
-margin_top = 42.0
-margin_right = 80.0
-margin_bottom = 62.0
+margin_top = 378.0
+margin_right = 544.0
+margin_bottom = 403.0
 focus_neighbour_top = NodePath("../Start")
 focus_neighbour_bottom = NodePath("../Quit")
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Start")
+custom_colors/font_color_focus = Color( 0.780392, 0.12549, 0.12549, 1 )
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_colors/font_color_hover = Color( 0.92549, 0.301961, 0.301961, 1 )
+custom_colors/font_color_pressed = Color( 0.698039, 0.0705882, 0.0745098, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
 text = "Options"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-margin_top = 66.0
-margin_right = 80.0
-margin_bottom = 86.0
+margin_top = 407.0
+margin_right = 544.0
+margin_bottom = 432.0
 focus_neighbour_top = NodePath("../Options")
 focus_previous = NodePath("../Options")
+custom_colors/font_color_focus = Color( 0.780392, 0.12549, 0.12549, 1 )
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_colors/font_color_hover = Color( 0.92549, 0.301961, 0.301961, 1 )
+custom_colors/font_color_pressed = Color( 0.698039, 0.0705882, 0.0745098, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]

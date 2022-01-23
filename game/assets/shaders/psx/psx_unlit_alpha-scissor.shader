@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, depth_draw_alpha_prepass;
+render_mode unshaded, depth_draw_alpha_prepass, async_visible;
 
 uniform vec2 precision_ratio = vec2(4.0, 3.0);
 uniform float precision_height = 240.0;

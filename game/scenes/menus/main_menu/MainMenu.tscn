@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scenes/menus/main_menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menus/main_menu/menu/Menu.tscn" type="PackedScene" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=7]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=8]
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=9]
+[ext_resource path="res://assets/models/scenery/rocks/rock_1/Rock1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/models/scenery/algae/Algae.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/models/fish/salmon/Salmon.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -423,7 +427,7 @@ render_target_update_mode = 3
 environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="CenterContainer/ViewportContainer/Viewport"]
-transform = Transform( 0.902615, 0, 0.430448, 0, 1, 0, -0.430448, 0, 0.902615, 4.39402, 2.5595, 3.77393 )
+transform = Transform( 0.902615, 0, 0.430448, 0, 1, 0, -0.430448, 0, 0.902615, 4.78844, 1.54018, 1.12204 )
 current = true
 
 [node name="Scenery" type="Spatial" parent="CenterContainer/ViewportContainer/Viewport"]
@@ -435,6 +439,36 @@ use_collision = true
 width = 20.0
 height = 0.1
 depth = 50.0
+
+[node name="Algae" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+transform = Transform( 0.902615, 0, 0.430448, 0, 1, 0, -0.430448, 0, 0.902615, -2.07692, 0.0500002, -8.95594 )
+
+[node name="Algae2" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+transform = Transform( 0.875945, 0, -0.482411, 0, 1, 0, 0.482411, 0, 0.875945, -1.30093, 0.0500002, -8.95594 )
+
+[node name="Algae5" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+transform = Transform( -0.984217, 0, 0.176964, 0, 1, 0, -0.176964, 0, -0.984217, -3.56163, 0.0500002, -3.50402 )
+
+[node name="Algae6" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+transform = Transform( 0.698115, 0, 0.715985, 0, 1, 0, -0.715985, 0, 0.698115, -3.35513, 0.0500002, -4.25202 )
+
+[node name="Algae3" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+transform = Transform( 0.830586, 0, 0.55689, 0, 1, 0, -0.55689, 0, 0.830586, 7.03808, 0.0500002, -3.77016 )
+
+[node name="Algae4" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+transform = Transform( -0.138084, 0, -0.990421, 0, 1, 0, 0.990421, 0, -0.138084, 0.0321606, 0.0500002, -0.022593 )
+
+[node name="Salmon" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 13 )]
+transform = Transform( 0.937962, 0, -0.346739, 0, 1, 0, 0.346739, 0, 0.937962, 4.55462, 1.40525, 0 )
+
+[node name="Shadow2" parent="CenterContainer/ViewportContainer/Viewport/Scenery/Salmon" instance=ExtResource( 11 )]
+transform = Transform( 0.949386, -0.350962, -1.53411e-08, 0, -2.18557e-08, 0.5, -0.350962, -0.949386, -4.1499e-08, -0.0759826, -1.32863, -0.0795461 )
+
+[node name="Rock" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.47931, 0.633707, -5.60567 )
+
+[node name="Shadow" parent="CenterContainer/ViewportContainer/Viewport/Scenery/Rock" instance=ExtResource( 11 )]
+transform = Transform( 2.53396, 0, 0, 0, -2.18557e-08, 0.5, 0, -2.53396, -1.10763e-07, 0, -0.55709, 0 )
 
 [node name="Menu" parent="." instance=ExtResource( 2 )]
 visible = false

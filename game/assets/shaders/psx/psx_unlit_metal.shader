@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode
 	diffuse_lambert_wrap, unshaded, cull_disabled,
-	depth_draw_opaque;
+	depth_draw_opaque, async_visible;
 
 uniform vec2 precision_ratio = vec2(4.0, 3.0);
 uniform float precision_height = 240.0;

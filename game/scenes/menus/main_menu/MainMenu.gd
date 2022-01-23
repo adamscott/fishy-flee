@@ -55,6 +55,10 @@ func _process(delta: float) -> void:
 	update_viewport()
 
 
+func start() -> void:
+	main_sm.restart(true, true)
+
+
 func update_viewport() -> void:
 	if not is_inside_tree():
 		return

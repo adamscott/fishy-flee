@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/game/Game.gd" type="Script" id=1]
-[ext_resource path="res://scenes/loading/Loading.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=3]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=4]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=5]
 [ext_resource path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" type="Script" id=6]
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" type="Script" id=7]
+[ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=8]
+[ext_resource path="res://scenes/menus/pause/Pause.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )
@@ -15,13 +16,6 @@ __meta__ = {
 }
 name = "Entry"
 
-[sub_resource type="Resource" id=2]
-script = ExtResource( 4 )
-__meta__ = {
-"graph_offset": Vector2( 548, 60 )
-}
-name = "Loading"
-
 [sub_resource type="Resource" id=3]
 script = ExtResource( 4 )
 __meta__ = {
@@ -29,13 +23,19 @@ __meta__ = {
 }
 name = "Game"
 
-[sub_resource type="Resource" id=4]
-script = ExtResource( 6 )
-from = "Entry"
-to = "Loading"
-conditions = {
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+__meta__ = {
+"graph_offset": Vector2( 548, 60 )
 }
-priority = 0
+name = "Loading"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+__meta__ = {
+"graph_offset": Vector2( 728, 60 )
+}
+name = "Pause"
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 7 )
@@ -52,6 +52,27 @@ conditions = {
 }
 priority = 1
 
+[sub_resource type="Resource" id=4]
+script = ExtResource( 6 )
+from = "Entry"
+to = "Loading"
+conditions = {
+}
+priority = 0
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 8 )
+name = "pause"
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 6 )
+from = "Game"
+to = "Pause"
+conditions = {
+"pause": SubResource( 11 )
+}
+priority = 0
+
 [sub_resource type="Resource" id=9]
 script = ExtResource( 7 )
 name = "game_loaded"
@@ -67,30 +88,50 @@ conditions = {
 }
 priority = 0
 
+[sub_resource type="Resource" id=13]
+script = ExtResource( 8 )
+name = "unpause"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 6 )
+from = "Pause"
+to = "Game"
+conditions = {
+"unpause": SubResource( 13 )
+}
+priority = 0
+
 [sub_resource type="Resource" id=7]
 script = ExtResource( 5 )
 name = ""
 states = {
 "Entry": SubResource( 1 ),
 "Game": SubResource( 3 ),
-"Loading": SubResource( 2 )
+"Loading": SubResource( 2 ),
+"Pause": SubResource( 10 )
 }
 transitions = {
 "Entry": {
 "Game": SubResource( 5 ),
 "Loading": SubResource( 4 )
 },
+"Game": {
+"Pause": SubResource( 12 )
+},
 "Loading": {
 "Game": SubResource( 6 )
+},
+"Pause": {
+"Game": SubResource( 14 )
 }
 }
 
 [node name="Game" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
 
-[node name="Loading" parent="." instance=ExtResource( 2 )]
-
 [node name="GameContainer" type="Control" parent="."]
+pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -105,6 +146,8 @@ margin_bottom = 40.0
 handle_input_locally = false
 render_target_update_mode = 3
 
+[node name="Pause" parent="." instance=ExtResource( 9 )]
+
 [node name="StateMachines" type="Node" parent="."]
 
 [node name="MainStateMachine" type="Node" parent="StateMachines"]
@@ -112,4 +155,6 @@ script = ExtResource( 3 )
 state_machine = SubResource( 7 )
 
 [connection signal="resized" from="GameContainer" to="." method="_on_GameContainer_resized"]
+[connection signal="main_menu" from="Pause" to="." method="_on_Pause_main_menu"]
+[connection signal="unpause" from="Pause" to="." method="_on_Pause_unpause"]
 [connection signal="transited" from="StateMachines/MainStateMachine" to="." method="_on_MainStateMachine_transited"]

@@ -8,7 +8,7 @@
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" type="Script" id=6]
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=7]
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/ExpressionCondition.gd" type="Script" id=8]
-[ext_resource path="res://scenes/loading/Loading.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/menus/loading/Loading.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
@@ -24,12 +24,12 @@ __meta__ = {
 }
 name = "Game"
 
-[sub_resource type="Resource" id=22]
+[sub_resource type="Resource" id=24]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 613.5, -20 )
+"graph_offset": Vector2( 248, -20 )
 }
-name = "MainMenu"
+name = "Intro"
 
 [sub_resource type="Resource" id=23]
 script = ExtResource( 2 )
@@ -38,12 +38,12 @@ __meta__ = {
 }
 name = "Loading"
 
-[sub_resource type="Resource" id=24]
+[sub_resource type="Resource" id=22]
 script = ExtResource( 2 )
 __meta__ = {
-"graph_offset": Vector2( 248, -20 )
+"graph_offset": Vector2( 613.5, -20 )
 }
-name = "Intro"
+name = "MainMenu"
 
 [sub_resource type="Resource" id=25]
 script = ExtResource( 4 )
@@ -66,18 +66,16 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=30]
-script = ExtResource( 6 )
-name = "start_game"
-comparation = 0
-value = true
+[sub_resource type="Resource" id=29]
+script = ExtResource( 8 )
+name = "main_menu_loaded and intro_ended"
 
-[sub_resource type="Resource" id=7]
+[sub_resource type="Resource" id=27]
 script = ExtResource( 4 )
-from = "MainMenu"
-to = "Game"
+from = "Intro"
+to = "MainMenu"
 conditions = {
-"start_game": SubResource( 30 )
+"main_menu_loaded and intro_ended": SubResource( 29 )
 }
 priority = 0
 
@@ -96,16 +94,18 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=29]
-script = ExtResource( 8 )
-name = "main_menu_loaded and intro_ended"
+[sub_resource type="Resource" id=30]
+script = ExtResource( 6 )
+name = "start_game"
+comparation = 0
+value = true
 
-[sub_resource type="Resource" id=27]
+[sub_resource type="Resource" id=7]
 script = ExtResource( 4 )
-from = "Intro"
-to = "MainMenu"
+from = "MainMenu"
+to = "Game"
 conditions = {
-"main_menu_loaded and intro_ended": SubResource( 29 )
+"start_game": SubResource( 30 )
 }
 priority = 0
 
@@ -138,9 +138,8 @@ transitions = {
 }
 
 [node name="Main" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
-
-[node name="Loading" parent="." instance=ExtResource( 9 )]
 
 [node name="StateMachines" type="Node" parent="."]
 
@@ -153,5 +152,7 @@ state_machine = SubResource( 9 )
 [node name="MainMenuContainer" type="Node" parent="."]
 
 [node name="GameContainer" type="Node" parent="."]
+
+[node name="Loading" parent="." instance=ExtResource( 9 )]
 
 [connection signal="transited" from="StateMachines/MainStateMachine" to="." method="_on_MainStateMachine_transited"]

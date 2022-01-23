@@ -3,11 +3,10 @@ extends Node
 const YAFSM: = preload("res://addons/imjp94.yafsm/YAFSM.gd")
 const StateMachinePlayer: = YAFSM.StateMachinePlayer
 
-const Loading: = preload("res://scenes/loading/Loading.gd")
+const Loading: = preload("res://scenes/menus/loading/Loading.gd")
 
 const Intro: = preload("res://scenes/intro/Intro.gd")
 const MainMenu: = preload("res://scenes/menus/main_menu/MainMenu.gd")
-const Game: = preload("res://scenes/game/Game.gd")
 
 const INTRO_PATH: = "res://scenes/intro/Intro.tscn"
 const MAIN_MENU_PATH: = "res://scenes/menus/main_menu/MainMenu.tscn"
@@ -15,7 +14,7 @@ const GAME_PATH: = "res://scenes/game/Game.tscn"
 
 var intro: Intro = null
 var main_menu: MainMenu = null
-var game: Game = null
+var game = null
 
 var intro_ended: = false
 var start_game: = false
@@ -28,7 +27,11 @@ onready var main_sm: StateMachinePlayer = $StateMachines/MainStateMachine
 
 
 func _on_MainStateMachine_transited(from, to) -> void:
+	prints("on mainstatemachine transited", from, to)
+	
 	match from:
+		"Loading":
+			loading.visible = false
 		"Intro":
 			hide_intro()
 		"MainMenu":
@@ -44,6 +47,7 @@ func _on_MainStateMachine_transited(from, to) -> void:
 		"Intro":
 			show_intro()
 		"MainMenu":
+			get_tree().paused = false
 			intro_ended = false
 			show_main_menu()
 		"Game":
@@ -56,12 +60,15 @@ func _on_Intro_intro_end() -> void:
 
 
 func _on_MainMenu_start() -> void:
-	prints("main menu start")
 	start_game = true
 
 
+func _on_Game_main_menu() -> void:
+	main_sm.set_trigger("main_menu")
+
+
 func _ready() -> void:
-	pass
+	Global.main = self
 
 
 func _process(delta: float) -> void:
@@ -97,6 +104,7 @@ func show_main_menu() -> void:
 		main_menu = Global.queue.get_resource(MAIN_MENU_PATH).instance()
 		main_menu.connect("start", self, "_on_MainMenu_start")
 	main_menu_container.add_child(main_menu)
+	main_menu.start()
 
 
 func hide_main_menu() -> void:
@@ -106,11 +114,14 @@ func hide_main_menu() -> void:
 func show_game() -> void:
 	if not game:
 		game = Global.queue.get_resource(GAME_PATH).instance()
+		game.connect("main_menu", self, "_on_Game_main_menu")
 	game_container.add_child(game)
 
 
 func hide_game() -> void:
 	game_container.remove_child(game)
+	game.queue_free()
+	game = null
 
 
 func update_progress_bar(delta: float) -> void:
@@ -118,7 +129,7 @@ func update_progress_bar(delta: float) -> void:
 	var main_menu_progress: float = Global.queue.get_progress(MAIN_MENU_PATH)
 	var game_progress: float = Global.queue.get_progress(GAME_PATH)
 	
-	loading.value = (intro_progress + main_menu_progress + game_progress) / 3.0 * 100
+	loading.value = intro_progress * 100
 
 
 func update_state_machines(delta: float) -> void:

@@ -9,4 +9,4 @@ func set_value(val: float) -> void:
 
 
 func _ready() -> void:
-	pass
+	prints("loading is", visible)

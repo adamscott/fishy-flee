@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/menus/pause/Pause.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/lato/Lato-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.0784314 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 2 )
+
+[node name="Pause" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+margin_left = 362.0
+margin_top = 150.0
+margin_right = 662.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 300, 300 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/CenterContainer"]
+margin_left = 95.0
+margin_top = 95.0
+margin_right = 205.0
+margin_bottom = 204.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/CenterContainer/VBoxContainer"]
+margin_right = 110.0
+margin_bottom = 37.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Pause"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/CenterContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 110.0
+margin_bottom = 109.0
+
+[node name="ReturnToGame" type="Button" parent="CenterContainer/Panel/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_right = 110.0
+margin_bottom = 20.0
+focus_neighbour_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+text = "Return to game"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/Panel/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 110.0
+margin_bottom = 44.0
+focus_neighbour_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="CenterContainer/Panel/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 110.0
+margin_bottom = 68.0
+focus_neighbour_top = NodePath("../MainMenu")
+focus_previous = NodePath("../MainMenu")
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/Panel/CenterContainer/VBoxContainer/VBoxContainer/ReturnToGame" to="." method="_on_ReturnToGame_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/CenterContainer/VBoxContainer/VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/CenterContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

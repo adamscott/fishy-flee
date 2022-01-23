@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scenes/menus/main_menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menus/main_menu/menu/Menu.tscn" type="PackedScene" id=2]
@@ -127,6 +127,48 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Menu->Start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "start" ],
+"method": "emit_signal"
+} ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -404,6 +446,7 @@ visible = false
 autoplay = "Entry->Menu"
 anims/Entry->Menu = SubResource( 20 )
 anims/Menu->Options = SubResource( 21 )
+anims/Menu->Start = SubResource( 23 )
 anims/Options->Menu = SubResource( 22 )
 anims/RESET = SubResource( 19 )
 
@@ -417,4 +460,5 @@ state_machine = SubResource( 10 )
 [connection signal="options" from="Menu" to="." method="_on_Menu_options"]
 [connection signal="quit" from="Menu" to="." method="_on_Menu_quit"]
 [connection signal="start" from="Menu" to="." method="_on_Menu_start"]
+[connection signal="back" from="Options" to="." method="_on_Options_back"]
 [connection signal="transited" from="StateMachines/MainStateMachine" to="." method="_on_MainStateMachine_transited"]

@@ -1,5 +1,7 @@
 extends Node
 
+signal start
+
 onready var center_container: CenterContainer = $CenterContainer
 onready var viewport_container: ViewportContainer = $CenterContainer/ViewportContainer
 onready var viewport: Viewport = $CenterContainer/ViewportContainer/Viewport
@@ -17,6 +19,8 @@ func _on_MainStateMachine_transited(from, to) -> void:
 	match to:
 		"Menu":
 			pass
+		"Start":
+			pass
 		"Options":
 			pass
 		"Quit":
@@ -27,18 +31,20 @@ func _on_MainStateMachine_transited(from, to) -> void:
 
 
 func _on_Menu_options() -> void:
-	prints("on menu options")
 	main_sm.set_trigger("options")
 
 
 func _on_Menu_quit() -> void:
-	prints("on menu quit")
 	main_sm.set_trigger("quit")
 
 
 func _on_Menu_start() -> void:
-	prints("on menu start")
 	main_sm.set_trigger("start")
+
+
+func _on_Options_back() -> void:
+	main_sm.set_trigger("back")
+
 
 
 func _ready() -> void:

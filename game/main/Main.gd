@@ -84,6 +84,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_progress_bar(delta)
 	update_state_machines(delta)
+	update_fullscreen()
 
 
 func update_root_viewport_size() -> void:
@@ -158,6 +159,11 @@ func update_state_machines(delta: float) -> void:
 	main_sm.set_param("async_shaders_timer_done", async_shaders_timer_done)
 	main_sm.set_param("intro_ended", intro_ended)
 	main_sm.set_param("start_game", start_game)
+
+
+func update_fullscreen() -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		OS.window_fullscreen = not OS.window_fullscreen
 
 
 func get_state() -> Dictionary:

@@ -57,7 +57,11 @@ material/0 = SubResource( 1 )
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="1"]
 stream = ExtResource( 6 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource( 6 )
+volume_db = -18.0
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true

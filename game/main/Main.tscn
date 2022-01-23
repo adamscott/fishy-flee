@@ -79,15 +79,15 @@ conditions = {
 }
 priority = 0
 
-[sub_resource type="Resource" id=28]
-script = ExtResource( 6 )
-name = "intro_loaded"
-comparation = 0
-value = true
-
 [sub_resource type="Resource" id=31]
 script = ExtResource( 6 )
 name = "async_shaders_timer_done"
+comparation = 0
+value = true
+
+[sub_resource type="Resource" id=28]
+script = ExtResource( 6 )
+name = "intro_loaded"
 comparation = 0
 value = true
 

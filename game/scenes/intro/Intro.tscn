@@ -119,7 +119,7 @@ transitions = {
 
 [sub_resource type="Animation" id=17]
 resource_name = "AdamScott"
-length = 4.0
+length = 5.0
 tracks/0/type = "animation"
 tracks/0/path = NodePath("AdamScott/AnimationPlayer")
 tracks/0/interp = 1
@@ -173,7 +173,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 4 ),
+"times": PoolRealArray( 5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "cutscene_end" ],
@@ -391,6 +391,12 @@ visible = false
 
 [node name="AdamScott" parent="." instance=ExtResource( 4 )]
 visible = false
+
+[node name="VBoxContainer" parent="AdamScott/CenterContainer" index="0"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
 
 [node name="StateMachines" type="Node" parent="."]
 

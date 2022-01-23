@@ -1,20 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/oswald/Oswald-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/oswald/Oswald-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/lato/Lato-LightItalic.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=3]
 size = 80
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CenterContainer/RichTextLabel:modulate")
+tracks/0/path = NodePath("CenterContainer/VBoxContainer/RichTextLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -26,7 +36,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CenterContainer/RichTextLabel:visible")
+tracks/1/path = NodePath("CenterContainer/VBoxContainer/RichTextLabel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -37,24 +47,48 @@ tracks/1/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/VBoxContainer/MarginContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer/VBoxContainer/MarginContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "adamscott"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("CenterContainer/RichTextLabel:modulate")
+tracks/0/path = NodePath("CenterContainer/VBoxContainer/RichTextLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 2.5, 3 ),
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CenterContainer/RichTextLabel:visible")
+tracks/1/path = NodePath("CenterContainer/VBoxContainer/RichTextLabel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -64,6 +98,30 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/VBoxContainer/MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer/VBoxContainer/MarginContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="AdamScott" type="Control"]
@@ -80,12 +138,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 212.0
-margin_top = 239.0
+margin_top = 219.0
 margin_right = 812.0
-margin_bottom = 360.0
+margin_bottom = 380.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+visible = false
+margin_right = 600.0
+margin_bottom = 121.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -99,6 +164,36 @@ fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
+margin_top = 125.0
+margin_right = 600.0
+margin_bottom = 161.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer"]
+margin_left = 100.0
+margin_right = 500.0
+margin_bottom = 36.0
+custom_constants/separation = -4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 5 )
+text = "https://adamscott.itch.io/"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 16.0
+margin_right = 400.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 5 )
+text = "https://github.com/adamscott/"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )

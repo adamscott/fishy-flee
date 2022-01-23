@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scenes/menus/main_menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menus/main_menu/menu/Menu.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sprites/shadow/Shadow.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/models/scenery/algae/Algae.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/models/fish/salmon/Salmon.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/fonts/lato/Lato-Regular.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -41,6 +42,15 @@ shader_param/max_fog_distance = 40.0
 shader_param/draw_distance_enabled = false
 shader_param/min_draw_distance = 2.0
 shader_param/max_draw_distance = 40.0
+
+[sub_resource type="StyleBoxFlat" id=24]
+
+[sub_resource type="DynamicFont" id=25]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 14 )
+
+[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="Animation" id=20]
 resource_name = "Entry->Menu"
@@ -277,6 +287,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Credits:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Credits:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
@@ -473,6 +507,67 @@ visible = false
 
 [node name="Options" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Credits/CenterContainer"]
+margin_left = 262.0
+margin_top = 50.0
+margin_right = 762.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 500, 500 )
+custom_styles/panel = SubResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits/CenterContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/CenterContainer/Panel/MarginContainer"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 450.0
+margin_bottom = 450.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 376.0
+size_flags_vertical = 3
+text = "Hello"
+
+[node name="Button" type="Button" parent="Credits/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+margin_top = 380.0
+margin_right = 400.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 25 )
+custom_styles/hover = SubResource( 26 )
+custom_styles/pressed = SubResource( 26 )
+custom_styles/focus = SubResource( 26 )
+custom_styles/disabled = SubResource( 26 )
+custom_styles/normal = SubResource( 26 )
+text = "Back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Entry->Menu"

@@ -400,7 +400,7 @@ transitions = {
 [node name="MainMenu" type="Node"]
 script = ExtResource( 1 )
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Background" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -408,31 +408,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="CenterContainer"]
-margin_left = 512.0
-margin_top = 300.0
-margin_right = 512.0
-margin_bottom = 300.0
+[node name="ViewportContainer" type="ViewportContainer" parent="Background"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Viewport" type="Viewport" parent="CenterContainer/ViewportContainer"]
-size = Vector2( 100, 100 )
+[node name="Viewport" type="Viewport" parent="Background/ViewportContainer"]
 size_override_stretch = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CenterContainer/ViewportContainer/Viewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background/ViewportContainer/Viewport"]
 environment = SubResource( 2 )
 
-[node name="Camera" type="Camera" parent="CenterContainer/ViewportContainer/Viewport"]
+[node name="Camera" type="Camera" parent="Background/ViewportContainer/Viewport"]
 transform = Transform( 0.902615, 0, 0.430448, 0, 1, 0, -0.430448, 0, 0.902615, 4.78844, 1.54018, 1.12204 )
 current = true
 
-[node name="Scenery" type="Spatial" parent="CenterContainer/ViewportContainer/Viewport"]
+[node name="Scenery" type="Spatial" parent="Background/ViewportContainer/Viewport"]
 
-[node name="CSGBox4" type="CSGBox" parent="CenterContainer/ViewportContainer/Viewport/Scenery"]
+[node name="CSGBox4" type="CSGBox" parent="Background/ViewportContainer/Viewport/Scenery"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.778 )
 material_override = SubResource( 3 )
 use_collision = true
@@ -440,34 +438,34 @@ width = 20.0
 height = 0.1
 depth = 50.0
 
-[node name="Algae" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+[node name="Algae" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
 transform = Transform( 0.902615, 0, 0.430448, 0, 1, 0, -0.430448, 0, 0.902615, -2.07692, 0.0500002, -8.95594 )
 
-[node name="Algae2" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+[node name="Algae2" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
 transform = Transform( 0.875945, 0, -0.482411, 0, 1, 0, 0.482411, 0, 0.875945, -1.30093, 0.0500002, -8.95594 )
 
-[node name="Algae5" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+[node name="Algae5" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
 transform = Transform( -0.984217, 0, 0.176964, 0, 1, 0, -0.176964, 0, -0.984217, -3.56163, 0.0500002, -3.50402 )
 
-[node name="Algae6" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+[node name="Algae6" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
 transform = Transform( 0.698115, 0, 0.715985, 0, 1, 0, -0.715985, 0, 0.698115, -3.35513, 0.0500002, -4.25202 )
 
-[node name="Algae3" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+[node name="Algae3" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
 transform = Transform( 0.830586, 0, 0.55689, 0, 1, 0, -0.55689, 0, 0.830586, 7.03808, 0.0500002, -3.77016 )
 
-[node name="Algae4" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
+[node name="Algae4" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 12 )]
 transform = Transform( -0.138084, 0, -0.990421, 0, 1, 0, 0.990421, 0, -0.138084, 0.0321606, 0.0500002, -0.022593 )
 
-[node name="Salmon" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 13 )]
+[node name="Salmon" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 13 )]
 transform = Transform( 0.937962, 0, -0.346739, 0, 1, 0, 0.346739, 0, 0.937962, 4.55462, 1.40525, 0 )
 
-[node name="Shadow2" parent="CenterContainer/ViewportContainer/Viewport/Scenery/Salmon" instance=ExtResource( 11 )]
+[node name="Shadow2" parent="Background/ViewportContainer/Viewport/Scenery/Salmon" instance=ExtResource( 11 )]
 transform = Transform( 0.949386, -0.350962, -1.53411e-08, 0, -2.18557e-08, 0.5, -0.350962, -0.949386, -4.1499e-08, -0.0759826, -1.32863, -0.0795461 )
 
-[node name="Rock" parent="CenterContainer/ViewportContainer/Viewport/Scenery" instance=ExtResource( 10 )]
+[node name="Rock" parent="Background/ViewportContainer/Viewport/Scenery" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.47931, 0.633707, -5.60567 )
 
-[node name="Shadow" parent="CenterContainer/ViewportContainer/Viewport/Scenery/Rock" instance=ExtResource( 11 )]
+[node name="Shadow" parent="Background/ViewportContainer/Viewport/Scenery/Rock" instance=ExtResource( 11 )]
 transform = Transform( 2.53396, 0, 0, 0, -2.18557e-08, 0.5, 0, -2.53396, -1.10763e-07, 0, -0.55709, 0 )
 
 [node name="Menu" parent="." instance=ExtResource( 2 )]
@@ -490,7 +488,7 @@ anims/RESET = SubResource( 19 )
 script = ExtResource( 8 )
 state_machine = SubResource( 10 )
 
-[connection signal="resized" from="CenterContainer" to="." method="_on_CenterContainer_resized"]
+[connection signal="resized" from="Background" to="." method="_on_Background_resized"]
 [connection signal="options" from="Menu" to="." method="_on_Menu_options"]
 [connection signal="quit" from="Menu" to="." method="_on_Menu_quit"]
 [connection signal="start" from="Menu" to="." method="_on_Menu_start"]

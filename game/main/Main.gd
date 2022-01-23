@@ -26,6 +26,10 @@ onready var game_container: Node = $GameContainer
 onready var main_sm: StateMachinePlayer = $StateMachines/MainStateMachine
 
 
+func _on_Root_size_changed() -> void:
+	update_root_viewport_size()
+
+
 func _on_MainStateMachine_transited(from, to) -> void:
 	prints("on mainstatemachine transited", from, to)
 	
@@ -68,12 +72,17 @@ func _on_Game_main_menu() -> void:
 
 
 func _ready() -> void:
+	get_tree().get_root().connect("size_changed", self, "_on_Root_size_changed")
 	Global.main = self
 
 
 func _process(delta: float) -> void:
 	update_progress_bar(delta)
 	update_state_machines(delta)
+
+
+func update_root_viewport_size() -> void:
+	get_tree().get_root().size = OS.window_size
 
 
 func load_intro() -> void:

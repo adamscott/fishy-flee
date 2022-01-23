@@ -2,16 +2,16 @@ extends Node
 
 signal start
 
-onready var center_container: CenterContainer = $CenterContainer
-onready var viewport_container: ViewportContainer = $CenterContainer/ViewportContainer
-onready var viewport: Viewport = $CenterContainer/ViewportContainer/Viewport
+onready var background: Control = $Background
+onready var viewport_container: ViewportContainer = $Background/ViewportContainer
+onready var viewport: Viewport = $Background/ViewportContainer/Viewport
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 onready var main_sm: = $StateMachines/MainStateMachine
 
 
-func _on_CenterContainer_resized() -> void:
+func _on_Background_resized() -> void:
 	update_viewport()
 
 
@@ -46,13 +46,12 @@ func _on_Options_back() -> void:
 	main_sm.set_trigger("back")
 
 
-
 func _ready() -> void:
-	pass
+	update_viewport()
 
 
 func _process(delta: float) -> void:
-	update_viewport()
+	pass
 
 
 func start() -> void:
@@ -63,9 +62,9 @@ func update_viewport() -> void:
 	if not is_inside_tree():
 		return
 	
-	center_container = $CenterContainer
-	viewport_container = $CenterContainer/ViewportContainer
-	viewport = $CenterContainer/ViewportContainer/Viewport
+	background = $Background
+	viewport_container = $Background/ViewportContainer
+	viewport = $Background/ViewportContainer/Viewport
 	
-	viewport_container.rect_min_size = center_container.rect_size
-	viewport.size = center_container.rect_size
+	viewport_container.rect_min_size = background.rect_size
+	viewport.size = background.rect_size

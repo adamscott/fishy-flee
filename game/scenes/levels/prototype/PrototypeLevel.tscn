@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://assets/sounds/ocean/ocean.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/fonts/lato/Lato-Black.ttf" type="DynamicFontData" id=25]
 [ext_resource path="res://assets/fonts/lato/Lato-Regular.ttf" type="DynamicFontData" id=26]
+[ext_resource path="res://assets/fonts/lato/Lato-Bold.ttf" type="DynamicFontData" id=27]
 
 [sub_resource type="ProceduralSky" id=11]
 
@@ -261,11 +262,48 @@ tracks/3/keys = {
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 10.3887, 8.46104, 1 )
 
+[sub_resource type="ShaderMaterial" id=30]
+shader = ExtResource( 6 )
+shader_param/precision_ratio = Vector2( 4, 3 )
+shader_param/precision_height = 240.0
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 0, 0, 0, 1 )
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/dither_enabled = true
+shader_param/color_depth = 32
+shader_param/fog_enabled = true
+shader_param/fog_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+shader_param/min_fog_distance = 10.0
+shader_param/max_fog_distance = 40.0
+shader_param/draw_distance_enabled = true
+shader_param/min_draw_distance = 2.0
+shader_param/max_draw_distance = 40.0
+
+[sub_resource type="BoxShape" id=31]
+extents = Vector3( 4.43761, 2.41248, 1 )
+
 [sub_resource type="BoxShape" id=25]
 extents = Vector3( 8.8378, 8.29605, 1 )
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 4.68288, 0.0408609, 13.6927 )
+
+[sub_resource type="DynamicFont" id=33]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 25 )
+
+[sub_resource type="DynamicFont" id=34]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="DynamicFont" id=35]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 26 )
 
 [sub_resource type="Animation" id=12]
 length = 0.001
@@ -625,6 +663,54 @@ tracks/12/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("GUI/Win:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("GUI/Win:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("GUI/Controls:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("GUI/Controls:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "cutscene_net_approaching"
@@ -761,6 +847,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("GUI/Controls:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=24]
 resource_name = "cutscene_net_approaching_skip"
@@ -895,6 +993,46 @@ tracks/10/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("GUI/Controls:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "display_controls"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GUI/Controls:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GUI/Controls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=26]
 resource_name = "game_over"
@@ -974,6 +1112,96 @@ tracks/5/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=32]
+resource_name = "win"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("FishingNet/FishingNetArea/FishingNetCollisionShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GUI/Win/CenterContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GUI/Win:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GUI/Win:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("GUI/Win/CenterContainer/VBoxContainer/ReturnToMainMenu:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("GUI/Win/CenterContainer/VBoxContainer/ReturnToMainMenu")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "grab_focus"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:chasing_atmosphere")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="PrototypeLevel" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -985,7 +1213,7 @@ environment = SubResource( 2 )
 [node name="Start" type="Position3D" parent="Position"]
 
 [node name="End" type="Position3D" parent="Position"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -228.605 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.546, 0, -228.605 )
 
 [node name="Cutscenes" type="Spatial" parent="."]
 
@@ -1283,6 +1511,14 @@ width = 20.0
 height = 0.1
 depth = 50.0
 
+[node name="CSGBox5" type="CSGBox" parent="Part2/Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -231.642 )
+material_override = SubResource( 3 )
+use_collision = true
+width = 20.0
+height = 0.1
+depth = 50.0
+
 [node name="Scenery" type="Spatial" parent="Part2"]
 
 [node name="Box" parent="Part2/Scenery" instance=ExtResource( 22 )]
@@ -1388,6 +1624,51 @@ transform = Transform( 0.108225, 0, 0.994126, 0, 1, 0, -0.994126, 0, 0.108225, 2
 [node name="Shadow" parent="Part2/Scenery/Box9" instance=ExtResource( 8 )]
 transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
 
+[node name="Box18" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.108225, 0, 0.994126, 0, 1, 0, -0.994126, 0, 0.108225, 1.75708, 0.552034, -156.677 )
+
+[node name="Shadow" parent="Part2/Scenery/Box18" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box19" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.651344, 0, 0.758782, 0, 1, 0, -0.758782, 0, 0.651344, -2.66156, 0.552034, -160.784 )
+
+[node name="Shadow" parent="Part2/Scenery/Box19" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box20" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.803036, 0, 0.59593, 0, 1, 0, -0.59593, 0, 0.803036, -2.55829, 1.54515, -160.787 )
+breakable = true
+
+[node name="Shadow" parent="Part2/Scenery/Box20" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box21" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.998738, 0, 0.0502093, 0, 1, 0, -0.0502093, 0, 0.998738, 0.359386, 0.552034, -164.621 )
+
+[node name="Shadow" parent="Part2/Scenery/Box21" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box22" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.985109, 0, -0.171929, 0, 1, 0, 0.171929, 0, 0.985109, 0.432788, 1.54515, -164.548 )
+breakable = true
+
+[node name="Shadow" parent="Part2/Scenery/Box22" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box23" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.951325, 0, 0.308187, 0, 1, 0, -0.308187, 0, 0.951325, -1.15813, 0.552034, -166.856 )
+breakable = true
+
+[node name="Shadow" parent="Part2/Scenery/Box23" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
+[node name="Box24" parent="Part2/Scenery" instance=ExtResource( 22 )]
+transform = Transform( 0.995928, 0, 0.0901458, 0, 1, 0, -0.0901458, 0, 0.995928, -1.06835, 1.54515, -166.805 )
+
+[node name="Shadow" parent="Part2/Scenery/Box24" instance=ExtResource( 8 )]
+transform = Transform( 1.56591, 5.96046e-08, 8.88178e-16, 0, -6.84483e-08, 0.5, 5.96046e-08, -1.56591, -2.18557e-08, 0, -0.460092, 0 )
+
 [node name="Dune9" parent="Part2/Scenery" instance=ExtResource( 7 )]
 transform = Transform( -5.98803, 0, 2.06017, 0, 1, 0, -2.42431, 0, -5.0886, -4.69594, 0.0963011, -139.117 )
 
@@ -1400,6 +1681,207 @@ transform = Transform( 2.78993, 0, 0, 0, -6.71601e-08, 0.5, -1.19209e-07, -1.536
 [node name="Rock" parent="Part2/Scenery" instance=ExtResource( 5 )]
 transform = Transform( 0.382474, -0.831888, 0.40209, 0.860751, 0.478998, 0.172245, -0.335889, 0.28022, 0.899253, -2.14677, 1.89996, -145.763 )
 
+[node name="Rock6" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.52875, 0, -0.848778, 0, 1, 0, 0.848778, 0, 0.52875, 2.83705, 0.374855, -158.005 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock6" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock7" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.52875, 0, -0.848778, 0, 1, 0, 0.848778, 0, 0.52875, -3.62821, 0.374855, -178.431 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock7" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock9" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.52875, 0, -0.848778, 0, 1, 0, 0.848778, 0, 0.52875, -2.08221, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock9" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock10" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.63031, 0, -0.776344, 0, 1, 0, 0.776344, 0, -0.63031, -3.67943, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock10" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock11" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.994611, 0, -0.103678, 0, 1, 0, 0.103678, 0, -0.994611, -5.23591, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock11" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock12" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.3128, 0, 0.94982, 0, 1, 0, -0.94982, 0, -0.3128, -7.13842, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock12" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock13" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.386051, 0, 0.922478, 0, 1, 0, -0.922478, 0, 0.386051, -8.63, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock13" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock14" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.386051, 0, 0.922478, 0, 1, 0, -0.922478, 0, 0.386051, 2.29422, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock14" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock15" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.557514, 0, 0.830168, 0, 1, 0, -0.830168, 0, -0.557514, 3.74133, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock15" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock16" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.474595, 0, 0.880205, 0, 1, 0, -0.880205, 0, 0.474595, 5.13159, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock16" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock17" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.83481, 0, -0.550539, 0, 1, 0, 0.550539, 0, 0.83481, 6.71583, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock17" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock18" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.913673, 0, 0.40645, 0, 1, 0, -0.40645, 0, 0.913673, 8.49032, 0.374855, -218.983 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock18" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Rock19" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.913673, 0, 0.40645, 0, 1, 0, -0.40645, 0, 0.913673, 8.49032, 1.22332, -219.346 )
+
+[node name="Rock20" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.12999, 0, 0.991516, 0, 1, 0, -0.991516, 0, -0.12999, 7.00199, 1.22332, -219.346 )
+
+[node name="Rock21" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.865947, 0, 0.500136, 0, 1, 0, -0.500136, 0, -0.865947, 5.20541, 1.22332, -219.346 )
+
+[node name="Rock22" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.386421, 0, 0.922323, 0, 1, 0, -0.922323, 0, 0.386421, 3.69685, 1.22332, -219.346 )
+
+[node name="Rock23" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.11811, 0, 0.993001, 0, 1, 0, -0.993001, 0, -0.11811, 2.01675, 1.22332, -219.346 )
+
+[node name="Rock24" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.999755, 0, -0.0221462, 0, 1, 0, 0.0221462, 0, 0.999755, 0.534858, 1.987, -219.346 )
+
+[node name="Rock25" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.621545, 0, 0.78338, 0, 1, 0, -0.78338, 0, 0.621545, -0.972922, 1.987, -219.346 )
+
+[node name="Rock26" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.749904, 0, -0.661548, 0, 1, 0, 0.661548, 0, 0.749904, -2.41668, 1.22332, -219.346 )
+
+[node name="Rock27" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.936177, 0, -0.351532, 0, 1, 0, 0.351532, 0, -0.936177, -4.07441, 1.22332, -219.346 )
+
+[node name="Rock28" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.200993, 0, -0.979593, 0, 1, 0, 0.979593, 0, 0.200993, -5.76214, 1.22332, -219.346 )
+
+[node name="Rock29" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.696302, 0, -0.71775, 0, 1, 0, 0.71775, 0, -0.696302, -7.189, 1.22332, -219.346 )
+
+[node name="Rock30" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.913673, 0, -0.40645, 0, 1, 0, 0.40645, 0, -0.913673, -7.189, 2.20258, -219.346 )
+
+[node name="Rock31" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.12999, 0, -0.991516, 0, 1, 0, 0.991516, 0, 0.12999, -5.70067, 2.20258, -219.346 )
+
+[node name="Rock32" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.865948, 0, -0.500136, 0, 1, 0, 0.500136, 0, 0.865948, -3.90409, 2.20258, -219.346 )
+
+[node name="Rock33" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.386421, 0, -0.922323, 0, 1, 0, 0.922323, 0, -0.386421, -2.39553, 2.20258, -219.346 )
+
+[node name="Rock34" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.11811, 0, -0.993001, 0, 1, 0, 0.993001, 0, 0.11811, -0.715442, 2.20258, -219.346 )
+
+[node name="Rock35" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.999755, 0, 0.0221461, 0, 1, 0, -0.0221461, 0, -0.999755, 0.766457, 2.20258, -219.346 )
+
+[node name="Rock36" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.621544, 0, -0.78338, 0, 1, 0, 0.78338, 0, -0.621544, 2.27424, 2.20258, -219.346 )
+
+[node name="Rock37" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.749904, 0, 0.661548, 0, 1, 0, -0.661548, 0, -0.749904, 3.718, 2.20258, -219.346 )
+
+[node name="Rock38" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.936177, 0, 0.351532, 0, 1, 0, -0.351532, 0, 0.936177, 5.37573, 2.20258, -219.346 )
+
+[node name="Rock39" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.200993, 0, 0.979593, 0, 1, 0, -0.979593, 0, -0.200993, 7.06346, 2.20258, -219.346 )
+
+[node name="Rock40" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.696302, 0, 0.71775, 0, 1, 0, -0.71775, 0, 0.696302, 8.49032, 2.20258, -219.346 )
+
+[node name="Rock41" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.913673, 0, 0.40645, 0, 1, 0, -0.40645, 0, 0.913673, 8.49032, 3.16743, -219.346 )
+
+[node name="Rock42" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.12999, 0, 0.991516, 0, 1, 0, -0.991516, 0, -0.12999, 7.00199, 3.16743, -219.346 )
+
+[node name="Rock43" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.865948, 0, 0.500136, 0, 1, 0, -0.500136, 0, -0.865948, 5.20541, 3.16743, -219.346 )
+
+[node name="Rock44" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.386421, 0, 0.922323, 0, 1, 0, -0.922323, 0, 0.386421, 3.69685, 3.16743, -219.346 )
+
+[node name="Rock45" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.11811, 0, 0.993001, 0, 1, 0, -0.993001, 0, -0.11811, 2.01675, 3.16743, -219.346 )
+
+[node name="Rock46" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.999755, 0, -0.022146, 0, 1, 0, 0.022146, 0, 0.999755, 0.534858, 3.16743, -219.346 )
+
+[node name="Rock47" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.621544, 0, 0.78338, 0, 1, 0, -0.78338, 0, 0.621544, -0.972922, 3.16743, -219.346 )
+
+[node name="Rock48" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.749904, 0, -0.661548, 0, 1, 0, 0.661548, 0, 0.749904, -2.41668, 3.16743, -219.346 )
+
+[node name="Rock49" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.936177, 0, -0.351532, 0, 1, 0, 0.351532, 0, -0.936177, -4.07441, 3.16743, -219.346 )
+
+[node name="Rock50" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( 0.200993, 0, -0.979593, 0, 1, 0, 0.979593, 0, 0.200993, -5.76214, 3.16743, -219.346 )
+
+[node name="Rock51" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.696301, 0, -0.71775, 0, 1, 0, 0.71775, 0, -0.696301, -7.189, 3.16743, -219.346 )
+
+[node name="Rock8" parent="Part2/Scenery" instance=ExtResource( 5 )]
+transform = Transform( -0.839743, 0, -0.542984, 0, 1, 0, 0.542984, 0, -0.839743, 1.05193, 0.374855, -174.728 )
+
+[node name="Shadow2" parent="Part2/Scenery/Rock8" instance=ExtResource( 8 )]
+transform = Transform( 2.13206, 0.877129, 1.44876e-08, 0, -1.1568e-07, 1, 0.748977, -2.49686, -4.12407e-08, 0.0690255, -0.294361, -0.259652 )
+
+[node name="Algae21" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, 3.29428, 2.38419e-07, -157.928 )
+
+[node name="Algae22" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, 1.43597, 2.38419e-07, -163.928 )
+
+[node name="Algae23" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, -3.91746, 2.38419e-07, -162.75 )
+
+[node name="Algae24" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, 6.41554, 2.38419e-07, -168.031 )
+
+[node name="Algae25" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, 7.58725, 2.38419e-07, -161.099 )
+
+[node name="Algae26" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, -6.67033, 2.38419e-07, -178.845 )
+
+[node name="Algae27" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, -2.91408, 2.38419e-07, -157.878 )
+
+[node name="Algae28" parent="Part2/Scenery" instance=ExtResource( 4 )]
+transform = Transform( 0.0828952, 0, -0.996559, 0, 1, 0, 0.996559, 0, 0.0828952, 5.85535, 2.38419e-07, -154.248 )
+
 [node name="SetPieces" type="Spatial" parent="Part2"]
 
 [node name="AlgaeMoguls" parent="Part2/SetPieces" instance=ExtResource( 21 )]
@@ -1407,6 +1889,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -105.457 )
 
 [node name="AlgaeMoguls2" parent="Part2/SetPieces" instance=ExtResource( 23 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.244 )
+
+[node name="CSGBox" type="CSGBox" parent="Part2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54577, 0, -220.248 )
+width = 6.28881
+height = 5.31622
+material = SubResource( 30 )
+
+[node name="WinArea" type="Area" parent="Part2/CSGBox"]
+
+[node name="WinCollisionShape" type="CollisionShape" parent="Part2/CSGBox/WinArea"]
+shape = SubResource( 31 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95586, 0 )
@@ -1492,6 +1985,150 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Controls" type="Control" parent="GUI"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Controls"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -154.0
+margin_right = 100.0
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Controls/MarginContainer"]
+margin_left = 50.0
+margin_right = 286.0
+margin_bottom = 154.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="Label" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer"]
+margin_right = 236.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 33 )
+text = "Controls"
+
+[node name="GridContainer" type="GridContainer" parent="GUI/Controls/MarginContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 236.0
+margin_bottom = 105.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 20
+columns = 3
+
+[node name="SwimLabel" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_right = 63.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 34 )
+text = "Swim"
+
+[node name="SwimValueKeyboard" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 83.0
+margin_right = 130.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "WASD"
+
+[node name="SwimValueJoystick" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 150.0
+margin_right = 236.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Left joystick"
+
+[node name="AscendLabel" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 20.0
+margin_right = 63.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 34 )
+text = "Ascend"
+
+[node name="AscendValueKeyboard" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 83.0
+margin_top = 20.0
+margin_right = 130.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Space"
+
+[node name="AscendValueJoystick" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 150.0
+margin_top = 20.0
+margin_right = 236.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Right trigger"
+
+[node name="DescendLabel" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 40.0
+margin_right = 63.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 34 )
+text = "Descend"
+
+[node name="DescendValueKeyboard" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 83.0
+margin_top = 40.0
+margin_right = 130.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Shift"
+
+[node name="DescendValueJoystick" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 150.0
+margin_top = 40.0
+margin_right = 236.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "Left trigger"
+
+[node name="DashLabel" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 60.0
+margin_right = 63.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 34 )
+text = "Dash"
+
+[node name="DashValueKeyboard" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 83.0
+margin_top = 60.0
+margin_right = 130.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "E"
+
+[node name="DashValueJoystick" type="Label" parent="GUI/Controls/MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 150.0
+margin_top = 60.0
+margin_right = 236.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.133333, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 35 )
+text = "X button"
 
 [node name="Pursuit" type="Control" parent="GUI"]
 visible = false
@@ -1640,12 +2277,71 @@ custom_styles/disabled = SubResource( 29 )
 custom_styles/normal = SubResource( 29 )
 text = "Return to main menu"
 
+[node name="Win" type="ColorRect" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI/Win"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Win/CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 124.0
+margin_top = 207.0
+margin_right = 899.0
+margin_bottom = 393.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Win/CenterContainer/VBoxContainer"]
+margin_right = 775.0
+margin_bottom = 145.0
+
+[node name="Label" type="Label" parent="GUI/Win/CenterContainer/VBoxContainer/MarginContainer"]
+margin_right = 775.0
+margin_bottom = 145.0
+custom_colors/font_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+custom_fonts/font = SubResource( 27 )
+text = "You Survived!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnToMainMenu" type="Button" parent="GUI/Win/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 149.0
+margin_right = 775.0
+margin_bottom = 186.0
+custom_colors/font_color_focus = Color( 0.941176, 0.964706, 0.941176, 1 )
+custom_colors/font_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+custom_colors/font_color_hover = Color( 0.760784, 0.815686, 0.756863, 1 )
+custom_colors/font_color_pressed = Color( 0.611765, 0.65098, 0.596078, 1 )
+custom_fonts/font = SubResource( 28 )
+custom_styles/hover = SubResource( 29 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 29 )
+custom_styles/disabled = SubResource( 29 )
+custom_styles/normal = SubResource( 29 )
+text = "Return to main menu"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "display_controls"
 anims/RESET = SubResource( 8 )
 anims/cutscene_net_approaching = SubResource( 9 )
 anims/cutscene_net_approaching_skip = SubResource( 24 )
+anims/display_controls = SubResource( 36 )
 anims/game_over = SubResource( 26 )
+anims/win = SubResource( 32 )
 
 [connection signal="body_entered" from="Part1/Part1CutsceneArea" to="." method="_on_Part1CutsceneArea_body_entered"]
+[connection signal="body_entered" from="Part2/CSGBox/WinArea" to="." method="_on_WinArea_body_entered"]
 [connection signal="body_entered" from="FishingNet/FishingNetArea" to="." method="_on_FishingNetArea_body_entered"]
 [connection signal="pressed" from="GUI/GameOver/CenterContainer/VBoxContainer/ReturnToMainMenu" to="." method="_on_ReturnToMainMenu_pressed"]
+[connection signal="pressed" from="GUI/Win/CenterContainer/VBoxContainer/ReturnToMainMenu" to="." method="_on_ReturnToMainMenu_pressed"]

@@ -8,6 +8,9 @@ export (bool) var chasing_atmosphere: = false
 export (bool) var pursuit: = false
 export (float) var fishing_net_speed: = 3.0
 
+var win: = false
+var game_over: = false
+
 onready var player: Player = $Player
 onready var fishing_net: Spatial = $FishingNet
 onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -30,7 +33,18 @@ func _on_FishingNetArea_body_entered(body: Node) -> void:
 	if not (body is Player):
 		return
 	
-	animation_player.play("game_over")
+	if not win:
+		game_over = true
+		animation_player.play("game_over")
+
+
+func _on_WinArea_body_entered(body: Node) -> void:
+	if not (body is Player):
+		return
+	
+	if not game_over:
+		win = true
+		animation_player.play("win")
 
 
 func _on_ReturnToMainMenu_pressed() -> void:

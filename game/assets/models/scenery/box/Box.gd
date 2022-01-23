@@ -1,6 +1,7 @@
 tool
 extends Spatial
 
+const box_material: ShaderMaterial = preload("res://assets/models/scenery/box/materials/box.material")
 const breakable_box_material: ShaderMaterial = preload("res://assets/models/scenery/box/materials/breakable_box.material")
 
 export (bool) var breakable: = false setget set_breakable
@@ -22,4 +23,4 @@ func update_material() -> void:
 	if breakable:
 		$Cube.material_override = breakable_box_material
 	else:
-		$Cube.material_override = null
+		$Cube.material_override = box_material

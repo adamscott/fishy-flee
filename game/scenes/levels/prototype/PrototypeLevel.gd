@@ -5,8 +5,11 @@ signal main_menu
 const Player: = preload("res://scenes/player/Player.gd")
 
 export (bool) var chasing_atmosphere: = false
+export (bool) var pursuit: = false
+export (float) var fishing_net_speed: = 3.0
 
 onready var player: Player = $Player
+onready var fishing_net: Spatial = $FishingNet
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 onready var position_start: Position3D = $Position/Start
@@ -44,7 +47,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	pass
+	move_fishing_net(delta)
 
 
 func update_skip_cutscene() -> void:
@@ -55,7 +58,15 @@ func update_skip_cutscene() -> void:
 
 func update_pursuit_gui() -> void:
 	var player_distance_to_end: = player.global_transform.origin.distance_to(position_end.global_transform.origin)
+	var fishing_net_distance_to_end: = fishing_net.global_transform.origin.distance_to(position_end.global_transform.origin)
 	var pursuit_distance: = position_start.global_transform.origin.distance_to(position_end.global_transform.origin)
 	
 	pursuit_fish_animation_tree["parameters/blend_position"] = player_distance_to_end / pursuit_distance
-	# pursuit_net_animation_tree["parameters/blend_position"] = player_distance_to_end / pursuit_distance
+	pursuit_net_animation_tree["parameters/blend_position"] = fishing_net_distance_to_end / pursuit_distance
+
+
+func move_fishing_net(delta: float) -> void:
+	if not pursuit:
+		return
+	
+	fishing_net.global_transform.origin += Vector3.FORWARD * fishing_net_speed * delta

@@ -613,6 +613,18 @@ tracks/11/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath(".:pursuit")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "cutscene_net_approaching"
@@ -818,10 +830,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [  ]
+"values": [ true ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("GUI/Pursuit:visible")
@@ -870,6 +882,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath(".:pursuit")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=26]
@@ -966,6 +990,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -228.605 )
 [node name="Cutscenes" type="Spatial" parent="."]
 
 [node name="Start" type="Spatial" parent="Cutscenes"]
+visible = false
 
 [node name="NetApproaching" type="Spatial" parent="Cutscenes/Start"]
 

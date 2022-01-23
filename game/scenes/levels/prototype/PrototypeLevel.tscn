@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scenes/levels/prototype/PrototypeLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://scenes/scenery/box/Box.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/levels/prototype/set_pieces/algae_moguls_2/AlgaeMoguls2.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/sounds/ocean/ocean.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/fonts/lato/Lato-Black.ttf" type="DynamicFontData" id=25]
+[ext_resource path="res://assets/fonts/lato/Lato-Regular.ttf" type="DynamicFontData" id=26]
 
 [sub_resource type="ProceduralSky" id=11]
 
@@ -259,8 +261,211 @@ tracks/3/keys = {
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 10.3887, 8.46104, 1 )
 
+[sub_resource type="BoxShape" id=25]
+extents = Vector3( 8.8378, 8.29605, 1 )
+
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 4.68288, 0.0408609, 3.581 )
+extents = Vector3( 4.68288, 0.0408609, 13.6927 )
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "fish_down"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "fish_up"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "fish_down"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "fish_up"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=17]
+blend_point_0/node = SubResource( 15 )
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource( 16 )
+blend_point_1/pos = 0.0
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "net_down"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "net_up"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "net_down"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "net_up"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=23]
+blend_point_0/node = SubResource( 21 )
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource( 22 )
+blend_point_1/pos = 0.0
+
+[sub_resource type="DynamicFont" id=27]
+size = 120
+font_data = ExtResource( 25 )
+
+[sub_resource type="DynamicFont" id=28]
+size = 30
+font_data = ExtResource( 26 )
+
+[sub_resource type="StyleBoxEmpty" id=29]
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -312,6 +517,102 @@ tracks/3/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("GUI/Pursuit:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("FishingNet:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("FishingNet/FishingNetArea/FishingNetCollisionShape:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("GUI/GameOver:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("GUI/GameOver:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("GUI/GameOver/CenterContainer/VBoxContainer:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("GUI/GameOver/CenterContainer/VBoxContainer/ReturnToMainMenu:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath(".:chasing_atmosphere")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "cutscene_net_approaching"
@@ -333,10 +634,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Part1/Part1CutsceneArea/Part1CutsceneCollisionShape:disabled")
@@ -357,10 +658,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Player:visible")
@@ -369,10 +670,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath(".:chasing_atmosphere")
@@ -386,12 +687,281 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("GUI/Pursuit:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("AnimationPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cutscene_net_approaching_skip" ],
+"method": "play"
+} ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("FishingNet:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("FishingNet/FishingNetArea/FishingNetCollisionShape:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Cutscenes/Start:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "cutscene_net_approaching_skip"
+length = 0.001
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Cutscenes/Start/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraRail:current")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Part1/Part1CutsceneArea/Part1CutsceneCollisionShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:in_cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:chasing_atmosphere")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("GUI/Pursuit:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("FishingNet:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("FishingNet/FishingNetArea/FishingNetCollisionShape:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Cutscenes/Start:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "game_over"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("FishingNet/FishingNetArea/FishingNetCollisionShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GUI/GameOver/CenterContainer/VBoxContainer/ReturnToMainMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GUI/GameOver/CenterContainer/VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GUI/GameOver:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("GUI/GameOver:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("GUI/GameOver/CenterContainer/VBoxContainer/ReturnToMainMenu")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "grab_focus"
+} ]
+}
 
 [node name="PrototypeLevel" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
+
+[node name="Position" type="Spatial" parent="."]
+
+[node name="Start" type="Position3D" parent="Position"]
+
+[node name="End" type="Position3D" parent="Position"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -228.605 )
 
 [node name="Cutscenes" type="Spatial" parent="."]
 
@@ -816,6 +1386,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.244 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95586, 0 )
 
+[node name="FishingNet" parent="." instance=ExtResource( 12 )]
+visible = false
+
+[node name="FishingNetArea" type="Area" parent="FishingNet"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.14371, 8.98823 )
+collision_mask = 2
+
+[node name="FishingNetCollisionShape" type="CollisionShape" parent="FishingNet/FishingNetArea"]
+shape = SubResource( 25 )
+disabled = true
+
 [node name="CameraRail" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2, 2 )
 current = true
@@ -836,6 +1417,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="CameraRail/Right"]
+transform = Transform( 1, 7.10542e-15, -5.68434e-14, -7.10543e-15, 1, 1.69407e-21, 5.68434e-14, 0, 1, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="Left" type="StaticBody" parent="CameraRail"]
@@ -879,8 +1461,166 @@ track_speed = 1.0
 [node name="OceanOverdriveBass" type="AudioStreamPlayer" parent="MixingDeskMusic/OceanOverdriveSong/AutoFadeContainer"]
 stream = ExtResource( 18 )
 
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pursuit" type="Control" parent="GUI"]
+visible = false
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Pursuit"]
+anchor_bottom = 1.0
+margin_right = 25.0
+custom_constants/margin_top = 50
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Pursuit/MarginContainer"]
+margin_left = 20.0
+margin_top = 50.0
+margin_right = 25.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 5, 0 )
+color = Color( 0.133333, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Pursuit/MarginContainer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fish" type="Control" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = 250.0
+margin_right = 5.0
+margin_bottom = 250.0
+
+[node name="Polygon2D" type="Polygon2D" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish"]
+position = Vector2( -3, 0 )
+color = Color( 0.133333, 0.137255, 0.137255, 1 )
+antialiased = true
+polygon = PoolVector2Array( -4, -9, -10, -6, -13, 1, -9, 8, 3, 8, 12, 12, 10, 8, 15, 7, 19, 2, 24, 11, 28, 12, 26, -2, 28, -16, 23, -14, 19, -7, 14, -10, 6, -11, 9, -18, 0, -14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish"]
+root_node = NodePath("../../../../../..")
+anims/RESET = SubResource( 12 )
+anims/fish_down = SubResource( 13 )
+anims/fish_up = SubResource( 14 )
+
+[node name="AnimationTree" type="AnimationTree" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer/Fish"]
+tree_root = SubResource( 17 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/blend_position = 0.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GUI/Pursuit/MarginContainer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Net" type="Control" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer2"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = 250.0
+margin_right = 5.0
+margin_bottom = 250.0
+
+[node name="Polygon2D" type="Polygon2D" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer2/Net"]
+position = Vector2( 8, 2 )
+color = Color( 0.780392, 0.12549, 0.12549, 1 )
+antialiased = true
+polygon = PoolVector2Array( -38, -5, -40, 2, -27, 8, -3, 12, 24, 12, 24, -19, 0, -20, -26, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer2/Net"]
+anims/RESET = SubResource( 18 )
+anims/net_down = SubResource( 19 )
+anims/net_up = SubResource( 20 )
+
+[node name="AnimationTree" type="AnimationTree" parent="GUI/Pursuit/MarginContainer/ColorRect/VBoxContainer2/Net"]
+tree_root = SubResource( 23 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/blend_position = 0.0
+
+[node name="GameOver" type="ColorRect" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.780392, 0.12549, 0.12549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI/GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/GameOver/CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 203.0
+margin_top = 207.0
+margin_right = 821.0
+margin_bottom = 393.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/GameOver/CenterContainer/VBoxContainer"]
+margin_right = 618.0
+margin_bottom = 145.0
+
+[node name="Label" type="Label" parent="GUI/GameOver/CenterContainer/VBoxContainer/MarginContainer"]
+margin_right = 618.0
+margin_bottom = 145.0
+custom_colors/font_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+custom_fonts/font = SubResource( 27 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnToMainMenu" type="Button" parent="GUI/GameOver/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 149.0
+margin_right = 618.0
+margin_bottom = 186.0
+custom_colors/font_color_focus = Color( 0.941176, 0.964706, 0.941176, 1 )
+custom_colors/font_color = Color( 0.941176, 0.964706, 0.941176, 1 )
+custom_colors/font_color_hover = Color( 0.760784, 0.815686, 0.756863, 1 )
+custom_colors/font_color_pressed = Color( 0.611765, 0.65098, 0.596078, 1 )
+custom_fonts/font = SubResource( 28 )
+custom_styles/hover = SubResource( 29 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 29 )
+custom_styles/disabled = SubResource( 29 )
+custom_styles/normal = SubResource( 29 )
+text = "Return to main menu"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )
 anims/cutscene_net_approaching = SubResource( 9 )
+anims/cutscene_net_approaching_skip = SubResource( 24 )
+anims/game_over = SubResource( 26 )
 
 [connection signal="body_entered" from="Part1/Part1CutsceneArea" to="." method="_on_Part1CutsceneArea_body_entered"]
+[connection signal="body_entered" from="FishingNet/FishingNetArea" to="." method="_on_FishingNetArea_body_entered"]
+[connection signal="pressed" from="GUI/GameOver/CenterContainer/VBoxContainer/ReturnToMainMenu" to="." method="_on_ReturnToMainMenu_pressed"]

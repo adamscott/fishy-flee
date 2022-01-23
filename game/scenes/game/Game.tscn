@@ -141,6 +141,9 @@ __meta__ = {
 [node name="ViewportContainer" type="ViewportContainer" parent="GameContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Viewport" type="Viewport" parent="GameContainer/ViewportContainer"]
 handle_input_locally = false

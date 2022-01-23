@@ -16,6 +16,7 @@ var intro: Intro = null
 var main_menu: MainMenu = null
 var game = null
 
+var async_shaders_timer_done: = false
 var intro_ended: = false
 var start_game: = false
 
@@ -28,6 +29,10 @@ onready var main_sm: StateMachinePlayer = $StateMachines/MainStateMachine
 
 func _on_Root_size_changed() -> void:
 	update_root_viewport_size()
+
+
+func _on_AsyncShadersTimer_timeout() -> void:
+	async_shaders_timer_done = true
 
 
 func _on_MainStateMachine_transited(from, to) -> void:
@@ -150,6 +155,7 @@ func update_state_machines(delta: float) -> void:
 	main_sm.set_param("main_menu_loaded", main_menu_progress >= 1.0)
 	main_sm.set_param("game_loaded", game_progress >= 1.0)
 	
+	main_sm.set_param("async_shaders_timer_done", async_shaders_timer_done)
 	main_sm.set_param("intro_ended", intro_ended)
 	main_sm.set_param("start_game", start_game)
 

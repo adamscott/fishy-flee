@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://main/Main.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/State.gd" type="Script" id=2]
@@ -85,11 +85,18 @@ name = "intro_loaded"
 comparation = 0
 value = true
 
+[sub_resource type="Resource" id=31]
+script = ExtResource( 6 )
+name = "async_shaders_timer_done"
+comparation = 0
+value = true
+
 [sub_resource type="Resource" id=26]
 script = ExtResource( 4 )
 from = "Loading"
 to = "Intro"
 conditions = {
+"async_shaders_timer_done": SubResource( 31 ),
 "intro_loaded": SubResource( 28 )
 }
 priority = 0
@@ -155,4 +162,11 @@ state_machine = SubResource( 9 )
 
 [node name="Loading" parent="." instance=ExtResource( 9 )]
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="AsyncShadersTimer" type="Timer" parent="Timers"]
+one_shot = true
+autostart = true
+
 [connection signal="transited" from="StateMachines/MainStateMachine" to="." method="_on_MainStateMachine_transited"]
+[connection signal="timeout" from="Timers/AsyncShadersTimer" to="." method="_on_AsyncShadersTimer_timeout"]

@@ -48,12 +48,15 @@ func _on_MainStateMachine_transited(from, to) -> void:
 
 
 func _on_Pause_main_menu() -> void:
-	prints("_on_pause_main_menu")
 	emit_signal("main_menu")
 
 
 func _on_Pause_unpause() -> void:
 	main_sm.set_trigger("unpause")
+
+
+func _on_Level_main_menu() -> void:
+	emit_signal("main_menu")
 
 
 func _ready() -> void:
@@ -101,4 +104,5 @@ func update_loading() -> void:
 func show_game() -> void:
 	if not level:
 		level = Global.queue.get_resource(PROTOTYPE_LEVEL_PATH).instance()
+		level.connect("main_menu", self, "_on_Level_main_menu")
 		game_viewport.add_child(level)
